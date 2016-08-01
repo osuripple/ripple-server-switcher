@@ -3,6 +3,6 @@ This is the rss source code. There's no git history because I've used git with i
 **Note that the hash of the downloaded version and of the compiled one won't match, because the compiler adds some data to the executable that is different each time you compile the project.**  
 I know that the code completely sucks, this was my first (and last) C# project I've ever made.
 
-# License
+## License
 All code in this repository is licensed under the GNU AGPL 3 License.  
 See the "LICENSE" file for more information.  
