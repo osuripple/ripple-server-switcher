@@ -26,7 +26,7 @@ namespace RippleServerSwitcher
         public string mirrorIP = "176.31.250.187";  // zxq
         public bool testConnection = false;
 
-        public int currentVersion = 130;     // Increment this and update changelog before compiling a new update
+        public int currentVersion = 140;     // Increment this and update changelog before compiling a new update
         public int latestChangelog = 0;
 
         public string settingsPath = System.Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Ripple Server Switcher";
@@ -171,7 +171,7 @@ namespace RippleServerSwitcher
                     // Check for any osu.ppy.sh line, remove them
                     for (var i = 0; i < hostsContent.Length; i++)
                     {
-                        if (Regex.Matches(hostsContent[i], "(?:osu|a|c|c1|bm6).ppy.sh").Count > 0)
+                        if (Regex.Matches(hostsContent[i], "(?:osu|a|c|c1|bm6|i).ppy.sh").Count > 0)
                         {
                             // Line that points (or used to point) to osu.ppy.sh, remove it
                             hostsContent[i] = "";
@@ -200,6 +200,7 @@ namespace RippleServerSwitcher
                             File.AppendAllText(hostsPath, rippleIP + "   c.ppy.sh" + Environment.NewLine);
                             File.AppendAllText(hostsPath, rippleIP + "   c1.ppy.sh" + Environment.NewLine);
                             File.AppendAllText(hostsPath, rippleIP + "   a.ppy.sh" + Environment.NewLine);
+                            File.AppendAllText(hostsPath, rippleIP + "   i.ppy.sh" + Environment.NewLine);
                             File.AppendAllText(hostsPath, mirrorIP + "   bm6.ppy.sh" + Environment.NewLine);
                         }
 

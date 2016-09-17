@@ -118,7 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="textBox1.Text" xml:space="preserve">
-    <value>v1.3
+    <value>v1.4
+- Add redirection for i.ppy.sh
+
+v1.3
 - Add mirror IP
 - Add local server check
 - Add local/remote button (for Ripple developers)
