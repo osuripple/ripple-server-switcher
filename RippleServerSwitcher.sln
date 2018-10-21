@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2046
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RippleServerSwitcher", "RippleServerSwitcher\RippleServerSwitcher.csproj", "{531FCBC2-A61A-48B3-A296-C7A39E7974AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Updater", "Updater\Updater.csproj", "{2F591632-032F-49FC-8B43-F6CFBC6C2C83}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpdaterLib", "UpdaterLib\UpdaterLib.csproj", "{B22AA9E5-ABDF-41AC-AE9F-09EA59CC8A05}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +19,19 @@ Global
 		{531FCBC2-A61A-48B3-A296-C7A39E7974AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{531FCBC2-A61A-48B3-A296-C7A39E7974AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{531FCBC2-A61A-48B3-A296-C7A39E7974AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F591632-032F-49FC-8B43-F6CFBC6C2C83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F591632-032F-49FC-8B43-F6CFBC6C2C83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F591632-032F-49FC-8B43-F6CFBC6C2C83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F591632-032F-49FC-8B43-F6CFBC6C2C83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B22AA9E5-ABDF-41AC-AE9F-09EA59CC8A05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B22AA9E5-ABDF-41AC-AE9F-09EA59CC8A05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B22AA9E5-ABDF-41AC-AE9F-09EA59CC8A05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B22AA9E5-ABDF-41AC-AE9F-09EA59CC8A05}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B984DDA2-3BAD-429F-98D2-0F834083D22B}
 	EndGlobalSection
 EndGlobal

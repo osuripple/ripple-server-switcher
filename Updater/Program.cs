@@ -5,14 +5,10 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace RippleServerSwitcher
+namespace Updater
 {
     static class Program
     {
-        public static string Version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-        public static int VersionNumber { get { return Convert.ToInt32(Version.Replace(".", string.Empty)); } }
-        public static Switcher Switcher = new Switcher();
-
         /// <summary>
         /// Punto di ingresso principale dell'applicazione.
         /// </summary>
@@ -23,7 +19,7 @@ namespace RippleServerSwitcher
                 SetProcessDPIAware();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            Application.Run(new UpdaterForm());
         }
 
         [System.Runtime.InteropServices.DllImport("user32.dll")]

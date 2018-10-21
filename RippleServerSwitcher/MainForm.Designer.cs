@@ -74,31 +74,19 @@ namespace RippleServerSwitcher
             Bloom bloom34 = new Bloom();
             Bloom bloom35 = new Bloom();
             Bloom bloom36 = new Bloom();
-            Bloom bloom37 = new Bloom();
-            Bloom bloom38 = new Bloom();
-            Bloom bloom39 = new Bloom();
-            Bloom bloom40 = new Bloom();
-            Bloom bloom41 = new Bloom();
-            Bloom bloom42 = new Bloom();
-            Bloom bloom43 = new Bloom();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.genuineTheme1 = new GenuineTheme();
-            this.localButton = new GenuineButton();
-            this.installCertificateButton = new GenuineButton();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.MirrorIPTextBox = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.IPTextBox = new System.Windows.Forms.TextBox();
-            this.updateIPButton = new GenuineButton();
+            this.inspectButton = new GenuineButton();
+            this.aboutButton = new GenuineButton();
+            this.bottomStatusPanel = new System.Windows.Forms.Panel();
+            this.bottomStatusPicture = new System.Windows.Forms.PictureBox();
+            this.bottomStatusLabel = new System.Windows.Forms.Label();
             this.switchButton = new GenuineButton();
             this.statusLabel = new System.Windows.Forms.Label();
-            this.genuineButton1 = new GenuineButton();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.closeButton = new GenuineButton();
             this.genuineTheme1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.bottomStatusPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bottomStatusPicture)).BeginInit();
             this.SuspendLayout();
             // 
             // genuineTheme1
@@ -130,30 +118,29 @@ namespace RippleServerSwitcher
         bloom6,
         bloom7,
         bloom8};
-            this.genuineTheme1.Controls.Add(this.localButton);
-            this.genuineTheme1.Controls.Add(this.installCertificateButton);
-            this.genuineTheme1.Controls.Add(this.groupBox1);
-            this.genuineTheme1.Controls.Add(this.updateIPButton);
+            this.genuineTheme1.Controls.Add(this.inspectButton);
+            this.genuineTheme1.Controls.Add(this.aboutButton);
+            this.genuineTheme1.Controls.Add(this.bottomStatusPanel);
             this.genuineTheme1.Controls.Add(this.switchButton);
             this.genuineTheme1.Controls.Add(this.statusLabel);
-            this.genuineTheme1.Controls.Add(this.genuineButton1);
-            this.genuineTheme1.Controls.Add(this.groupBox2);
+            this.genuineTheme1.Controls.Add(this.closeButton);
             this.genuineTheme1.Customization = "KSkp/xkZGf8pKSn/GRkZ/zo6Ov//////Ojo6/wAAAP8=";
             this.genuineTheme1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.genuineTheme1.Font = new System.Drawing.Font("Verdana", 8F);
             this.genuineTheme1.Image = null;
             this.genuineTheme1.Location = new System.Drawing.Point(0, 0);
+            this.genuineTheme1.Margin = new System.Windows.Forms.Padding(4);
             this.genuineTheme1.Movable = true;
             this.genuineTheme1.Name = "genuineTheme1";
             this.genuineTheme1.NoRounding = false;
             this.genuineTheme1.Sizable = false;
-            this.genuineTheme1.Size = new System.Drawing.Size(255, 202);
+            this.genuineTheme1.Size = new System.Drawing.Size(340, 169);
             this.genuineTheme1.SmartBounds = true;
             this.genuineTheme1.TabIndex = 0;
             this.genuineTheme1.Text = "Ripple Server Switcher";
             this.genuineTheme1.TransparencyKey = System.Drawing.Color.Fuchsia;
             // 
-            // localButton
+            // inspectButton
             // 
             bloom9.Name = "DownGradient1";
             bloom9.Value = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
@@ -169,7 +156,7 @@ namespace RippleServerSwitcher
             bloom14.Value = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             bloom15.Name = "Border2";
             bloom15.Value = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.localButton.Colors = new Bloom[] {
+            this.inspectButton.Colors = new Bloom[] {
         bloom9,
         bloom10,
         bloom11,
@@ -177,19 +164,20 @@ namespace RippleServerSwitcher
         bloom13,
         bloom14,
         bloom15};
-            this.localButton.Customization = "KSkp/zMzM/8zMzP/KSkp//////////8MGRkZ/w==";
-            this.localButton.Font = new System.Drawing.Font("Verdana", 8F);
-            this.localButton.Image = null;
-            this.localButton.Location = new System.Drawing.Point(128, 97);
-            this.localButton.Name = "localButton";
-            this.localButton.NoRounding = false;
-            this.localButton.Size = new System.Drawing.Size(116, 25);
-            this.localButton.TabIndex = 9;
-            this.localButton.Text = "Local/Remote";
-            this.localButton.Transparent = false;
-            this.localButton.Click += new System.EventHandler(this.localButton_Click);
+            this.inspectButton.Customization = "KSkp/zMzM/8zMzP/KSkp//////////8MGRkZ/w==";
+            this.inspectButton.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Italic);
+            this.inspectButton.Image = null;
+            this.inspectButton.Location = new System.Drawing.Point(175, 106);
+            this.inspectButton.Margin = new System.Windows.Forms.Padding(4);
+            this.inspectButton.Name = "inspectButton";
+            this.inspectButton.NoRounding = false;
+            this.inspectButton.Size = new System.Drawing.Size(150, 31);
+            this.inspectButton.TabIndex = 13;
+            this.inspectButton.Text = "Inspect";
+            this.inspectButton.Transparent = false;
+            this.inspectButton.Click += new System.EventHandler(this.inspectButton_click);
             // 
-            // installCertificateButton
+            // aboutButton
             // 
             bloom16.Name = "DownGradient1";
             bloom16.Value = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
@@ -205,7 +193,7 @@ namespace RippleServerSwitcher
             bloom21.Value = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             bloom22.Name = "Border2";
             bloom22.Value = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.installCertificateButton.Colors = new Bloom[] {
+            this.aboutButton.Colors = new Bloom[] {
         bloom16,
         bloom17,
         bloom18,
@@ -213,78 +201,48 @@ namespace RippleServerSwitcher
         bloom20,
         bloom21,
         bloom22};
-            this.installCertificateButton.Customization = "KSkp/zMzM/8zMzP/KSkp//////////8MGRkZ/w==";
-            this.installCertificateButton.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Bold);
-            this.installCertificateButton.Image = null;
-            this.installCertificateButton.Location = new System.Drawing.Point(128, 67);
-            this.installCertificateButton.Name = "installCertificateButton";
-            this.installCertificateButton.NoRounding = false;
-            this.installCertificateButton.Size = new System.Drawing.Size(116, 25);
-            this.installCertificateButton.TabIndex = 8;
-            this.installCertificateButton.Text = "Install certificate";
-            this.installCertificateButton.Transparent = false;
-            this.installCertificateButton.Click += new System.EventHandler(this.installCertificateButton_Click);
+            this.aboutButton.Customization = "KSkp/zMzM/8zMzP/KSkp//////////8MGRkZ/w==";
+            this.aboutButton.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Italic);
+            this.aboutButton.Image = null;
+            this.aboutButton.Location = new System.Drawing.Point(20, 106);
+            this.aboutButton.Margin = new System.Windows.Forms.Padding(4);
+            this.aboutButton.Name = "aboutButton";
+            this.aboutButton.NoRounding = false;
+            this.aboutButton.Size = new System.Drawing.Size(150, 31);
+            this.aboutButton.TabIndex = 12;
+            this.aboutButton.Text = "About";
+            this.aboutButton.Transparent = false;
+            this.aboutButton.Click += new System.EventHandler(this.aboutButton_Click);
             // 
-            // groupBox1
+            // bottomStatusPanel
             // 
-            this.groupBox1.Controls.Add(this.MirrorIPTextBox);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.IPTextBox);
-            this.groupBox1.ForeColor = System.Drawing.Color.White;
-            this.groupBox1.Location = new System.Drawing.Point(15, 128);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(229, 65);
-            this.groupBox1.TabIndex = 7;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Settings";
-            this.groupBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.groupBox1_Paint);
+            this.bottomStatusPanel.Controls.Add(this.bottomStatusPicture);
+            this.bottomStatusPanel.Controls.Add(this.bottomStatusLabel);
+            this.bottomStatusPanel.Location = new System.Drawing.Point(20, 142);
+            this.bottomStatusPanel.Name = "bottomStatusPanel";
+            this.bottomStatusPanel.Size = new System.Drawing.Size(305, 24);
+            this.bottomStatusPanel.TabIndex = 11;
             // 
-            // MirrorIPTextBox
+            // bottomStatusPicture
             // 
-            this.MirrorIPTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
-            this.MirrorIPTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.MirrorIPTextBox.ForeColor = System.Drawing.Color.White;
-            this.MirrorIPTextBox.Location = new System.Drawing.Point(116, 35);
-            this.MirrorIPTextBox.Name = "MirrorIPTextBox";
-            this.MirrorIPTextBox.Size = new System.Drawing.Size(107, 20);
-            this.MirrorIPTextBox.TabIndex = 7;
-            this.MirrorIPTextBox.TextChanged += new System.EventHandler(this.MirrorIPTextBox_TextChanged);
+            this.bottomStatusPicture.Location = new System.Drawing.Point(4, 2);
+            this.bottomStatusPicture.Name = "bottomStatusPicture";
+            this.bottomStatusPicture.Size = new System.Drawing.Size(20, 21);
+            this.bottomStatusPicture.TabIndex = 8;
+            this.bottomStatusPicture.TabStop = false;
             // 
-            // label2
+            // bottomStatusLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(113, 19);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Mirror IP:";
+            this.bottomStatusLabel.AutoSize = true;
+            this.bottomStatusLabel.ForeColor = System.Drawing.Color.Silver;
+            this.bottomStatusLabel.Location = new System.Drawing.Point(21, 1);
+            this.bottomStatusLabel.Name = "bottomStatusLabel";
+            this.bottomStatusLabel.Size = new System.Drawing.Size(78, 17);
+            this.bottomStatusLabel.TabIndex = 9;
+            this.bottomStatusLabel.Text = "Loading...";
+            this.bottomStatusLabel.DoubleClick += new System.EventHandler(this.bottomStatusLabel_DoubleClick);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(2, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(63, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Ripple IP:";
-            // 
-            // IPTextBox
-            // 
-            this.IPTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
-            this.IPTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.IPTextBox.ForeColor = System.Drawing.Color.White;
-            this.IPTextBox.Location = new System.Drawing.Point(5, 35);
-            this.IPTextBox.Name = "IPTextBox";
-            this.IPTextBox.Size = new System.Drawing.Size(107, 20);
-            this.IPTextBox.TabIndex = 5;
-            this.IPTextBox.TextChanged += new System.EventHandler(this.IPTextBox_TextChanged);
-            // 
-            // updateIPButton
+            // switchButton
             // 
             bloom23.Name = "DownGradient1";
             bloom23.Value = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
@@ -300,7 +258,7 @@ namespace RippleServerSwitcher
             bloom28.Value = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             bloom29.Name = "Border2";
             bloom29.Value = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.updateIPButton.Colors = new Bloom[] {
+            this.switchButton.Colors = new Bloom[] {
         bloom23,
         bloom24,
         bloom25,
@@ -308,19 +266,32 @@ namespace RippleServerSwitcher
         bloom27,
         bloom28,
         bloom29};
-            this.updateIPButton.Customization = "KSkp/zMzM/8zMzP/KSkp//////////8MGRkZ/w==";
-            this.updateIPButton.Font = new System.Drawing.Font("Verdana", 8F);
-            this.updateIPButton.Image = null;
-            this.updateIPButton.Location = new System.Drawing.Point(15, 97);
-            this.updateIPButton.Name = "updateIPButton";
-            this.updateIPButton.NoRounding = false;
-            this.updateIPButton.Size = new System.Drawing.Size(110, 25);
-            this.updateIPButton.TabIndex = 3;
-            this.updateIPButton.Text = "Update IP";
-            this.updateIPButton.Transparent = false;
-            this.updateIPButton.Click += new System.EventHandler(this.updateIPButton_Click);
+            this.switchButton.Customization = "KSkp/zMzM/8zMzP/KSkp//////////8MGRkZ/w==";
+            this.switchButton.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Bold);
+            this.switchButton.Image = null;
+            this.switchButton.Location = new System.Drawing.Point(20, 72);
+            this.switchButton.Margin = new System.Windows.Forms.Padding(4);
+            this.switchButton.Name = "switchButton";
+            this.switchButton.NoRounding = false;
+            this.switchButton.Size = new System.Drawing.Size(305, 31);
+            this.switchButton.TabIndex = 2;
+            this.switchButton.Text = "On/Off";
+            this.switchButton.Transparent = false;
+            this.switchButton.Click += new System.EventHandler(this.switchButton_Click);
             // 
-            // switchButton
+            // statusLabel
+            // 
+            this.statusLabel.BackColor = System.Drawing.Color.Transparent;
+            this.statusLabel.ForeColor = System.Drawing.Color.White;
+            this.statusLabel.Location = new System.Drawing.Point(0, 43);
+            this.statusLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(340, 25);
+            this.statusLabel.TabIndex = 1;
+            this.statusLabel.Text = "Loading...";
+            this.statusLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // closeButton
             // 
             bloom30.Name = "DownGradient1";
             bloom30.Value = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
@@ -336,7 +307,7 @@ namespace RippleServerSwitcher
             bloom35.Value = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             bloom36.Name = "Border2";
             bloom36.Value = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.switchButton.Colors = new Bloom[] {
+            this.closeButton.Colors = new Bloom[] {
         bloom30,
         bloom31,
         bloom32,
@@ -344,107 +315,36 @@ namespace RippleServerSwitcher
         bloom34,
         bloom35,
         bloom36};
-            this.switchButton.Customization = "KSkp/zMzM/8zMzP/KSkp//////////8MGRkZ/w==";
-            this.switchButton.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Bold);
-            this.switchButton.Image = null;
-            this.switchButton.Location = new System.Drawing.Point(15, 67);
-            this.switchButton.Name = "switchButton";
-            this.switchButton.NoRounding = false;
-            this.switchButton.Size = new System.Drawing.Size(110, 25);
-            this.switchButton.TabIndex = 2;
-            this.switchButton.Text = "On/Off";
-            this.switchButton.Transparent = false;
-            this.switchButton.Click += new System.EventHandler(this.switchButton_Click);
-            // 
-            // statusLabel
-            // 
-            this.statusLabel.BackColor = System.Drawing.Color.Transparent;
-            this.statusLabel.ForeColor = System.Drawing.Color.White;
-            this.statusLabel.Location = new System.Drawing.Point(0, 35);
-            this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(255, 35);
-            this.statusLabel.TabIndex = 1;
-            this.statusLabel.Text = "Loading...";
-            this.statusLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // genuineButton1
-            // 
-            bloom37.Name = "DownGradient1";
-            bloom37.Value = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
-            bloom38.Name = "DownGradient2";
-            bloom38.Value = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            bloom39.Name = "NoneGradient1";
-            bloom39.Value = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            bloom40.Name = "NoneGradient2";
-            bloom40.Value = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
-            bloom41.Name = "Text";
-            bloom41.Value = System.Drawing.Color.White;
-            bloom42.Name = "Border1";
-            bloom42.Value = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            bloom43.Name = "Border2";
-            bloom43.Value = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.genuineButton1.Colors = new Bloom[] {
-        bloom37,
-        bloom38,
-        bloom39,
-        bloom40,
-        bloom41,
-        bloom42,
-        bloom43};
-            this.genuineButton1.Customization = "KSkp/zMzM/8zMzP/KSkp//////////8MGRkZ/w==";
-            this.genuineButton1.Font = new System.Drawing.Font("Verdana", 8F);
-            this.genuineButton1.Image = null;
-            this.genuineButton1.Location = new System.Drawing.Point(230, 3);
-            this.genuineButton1.Name = "genuineButton1";
-            this.genuineButton1.NoRounding = false;
-            this.genuineButton1.Size = new System.Drawing.Size(22, 23);
-            this.genuineButton1.TabIndex = 0;
-            this.genuineButton1.Text = "x";
-            this.genuineButton1.Transparent = false;
-            this.genuineButton1.Click += new System.EventHandler(this.genuineButton1_Click);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.ForeColor = System.Drawing.Color.White;
-            this.groupBox2.Location = new System.Drawing.Point(15, 202);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(229, 109);
-            this.groupBox2.TabIndex = 8;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Warnings";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Verdana", 8F);
-            this.label4.ForeColor = System.Drawing.Color.Gold;
-            this.label4.Location = new System.Drawing.Point(15, 18);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(199, 78);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "You are playing on a local server!\r\nThat\'s only for Ripple developers!\r\nYou won\'t" +
-    " be able to connect\r\nif you leave the switcher in the\r\ncurrent state. Please pre" +
-    "ss the\r\nLocal/Remote button.";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.closeButton.Customization = "KSkp/zMzM/8zMzP/KSkp//////////8MGRkZ/w==";
+            this.closeButton.Font = new System.Drawing.Font("Verdana", 8F);
+            this.closeButton.Image = null;
+            this.closeButton.Location = new System.Drawing.Point(310, 4);
+            this.closeButton.Margin = new System.Windows.Forms.Padding(4);
+            this.closeButton.Name = "closeButton";
+            this.closeButton.NoRounding = false;
+            this.closeButton.Size = new System.Drawing.Size(26, 22);
+            this.closeButton.TabIndex = 0;
+            this.closeButton.Text = "x";
+            this.closeButton.Transparent = false;
+            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(255, 202);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.ClientSize = new System.Drawing.Size(340, 169);
             this.Controls.Add(this.genuineTheme1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.Text = "DAT SWITCHER";
             this.TransparencyKey = System.Drawing.Color.Fuchsia;
             this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.genuineTheme1.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.bottomStatusPanel.ResumeLayout(false);
+            this.bottomStatusPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bottomStatusPicture)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -452,19 +352,14 @@ namespace RippleServerSwitcher
         #endregion
 
         private GenuineTheme genuineTheme1;
-        private GenuineButton genuineButton1;
+        private GenuineButton closeButton;
         private GenuineButton switchButton;
         private System.Windows.Forms.Label statusLabel;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox IPTextBox;
-        private GenuineButton updateIPButton;
-        private GenuineButton installCertificateButton;
-        private TextBox MirrorIPTextBox;
-        private Label label2;
-        private GenuineButton localButton;
-        private Label label4;
-        private GroupBox groupBox2;
+        private PictureBox bottomStatusPicture;
+        private Label bottomStatusLabel;
+        private Panel bottomStatusPanel;
+        private GenuineButton aboutButton;
+        private GenuineButton inspectButton;
     }
 }
 

@@ -118,41 +118,54 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="textBox1.Text" xml:space="preserve">
-    <value>v2.0
-- Made the server switcher easier to use
-- Get redirections remotely
-- Add updater
-- Add support for high DPI screens
+    <value>© 2015-2018, The Ripple Team
+Released under the GNU AGPL 3 License.
 
-v1.4
-- Add redirection for i.ppy.sh
+Source code available at:
+https://zxq.co/ripple/ripple-server-switcher 
 
-v1.3
-- Add mirror IP
-- Add local server check
-- Add local/remote button (for Ripple developers)
+Icons:
+- "Aurora" Icons by MannMitDerTarnjacke (Jakob Metzger), released under CC Attribution-No Derivative 4.0
+- "Project" Icons by Mihaiciuc Bogdan, released under CC Attribution 4.0
 
-v.1.2
-- Add automatic IP update if server IP changes
-- Add update IP button to get ripple's IP directly from the server
-
-v1.12
-- Add hosts file exist check
-- Support for non default windirs
-
-v1.11
-- Update HTTPS certificate
-
-v1.10
-- Add HTTPS certificate installer
-
-v0.91
-- Changed some stuff in updater
-
-v0.90
-- First release</value>
+Special thanks to the Ripple community &lt;3</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+        O6L+vwkhxLdsavshCGvOjQAAAABJRU5ErkJggg==
+</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAIAICAAAAEAIACoEAAAJgAAABAQAAABACAAaAQAAM4QAAAoAAAAIAAAAEAAAAABACAAAAAAAAAA
