@@ -14,7 +14,7 @@ using System.Windows.Forms;
 //Version: 1.5.2
 //------------------
 
-abstract class ThemeContainer152 : ContainerControl
+public abstract class ThemeContainer152 : ContainerControl
 {
 
 
@@ -965,7 +965,7 @@ abstract class ThemeContainer152 : ContainerControl
 
 }
 
-abstract class ThemeControl152 : Control
+public abstract class ThemeControl152 : Control
 {
 
     protected Graphics G;
@@ -1647,7 +1647,7 @@ abstract class ThemeControl152 : Control
 
 }
 
-enum MouseState : byte
+public enum MouseState : byte
 {
     None = 0,
     Over = 1,
@@ -1655,7 +1655,7 @@ enum MouseState : byte
     Block = 3
 }
 
-class Bloom
+public class Bloom
 {
 
     private string _Name;

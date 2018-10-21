@@ -13,7 +13,7 @@ using System.Windows.Forms;
 //Version: 1.0.0
 //Theme Base: 1.5.2
 //------------------
-class GenuineTheme : ThemeContainer152
+public class GenuineTheme : ThemeContainer152
 {
 
     public GenuineTheme()
@@ -84,7 +84,7 @@ class GenuineTheme : ThemeContainer152
 //Version: 1.0.0
 //Theme Base: 1.5.2
 //------------------
-class GenuineButton : ThemeControl152
+public class GenuineButton : ThemeControl152
 {
 
     public GenuineButton()

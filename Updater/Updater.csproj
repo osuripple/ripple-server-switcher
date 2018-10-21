@@ -71,12 +71,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Theme.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Themebase.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="UpdaterForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +111,10 @@
     <ProjectReference Include="..\RippleServerSwitcher\RippleServerSwitcher.csproj">
       <Project>{531fcbc2-a61a-48b3-a296-c7a39e7974ad}</Project>
       <Name>RippleServerSwitcher</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Theme\Theme.csproj">
+      <Project>{4512ae3e-f52f-4f56-bdb5-94a7a78c74cb}</Project>
+      <Name>Theme</Name>
     </ProjectReference>
     <ProjectReference Include="..\UpdaterLib\UpdaterLib.csproj">
       <Project>{b22aa9e5-abdf-41ac-ae9f-09ea59cc8a05}</Project>

@@ -125,12 +125,6 @@
     </Compile>
     <Compile Include="SettingsManager.cs" />
     <Compile Include="Switcher.cs" />
-    <Compile Include="Theme.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Themebase.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <EmbeddedResource Include="AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -187,6 +181,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Theme\Theme.csproj">
+      <Project>{4512ae3e-f52f-4f56-bdb5-94a7a78c74cb}</Project>
+      <Name>Theme</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UpdaterLib\UpdaterLib.csproj">
       <Project>{b22aa9e5-abdf-41ac-ae9f-09ea59cc8a05}</Project>
       <Name>UpdaterLib</Name>

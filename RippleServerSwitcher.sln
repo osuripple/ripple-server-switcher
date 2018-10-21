@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Updater", "Updater\Updater.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpdaterLib", "UpdaterLib\UpdaterLib.csproj", "{B22AA9E5-ABDF-41AC-AE9F-09EA59CC8A05}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Theme", "Theme\Theme.csproj", "{4512AE3E-F52F-4F56-BDB5-94A7A78C74CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{B22AA9E5-ABDF-41AC-AE9F-09EA59CC8A05}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B22AA9E5-ABDF-41AC-AE9F-09EA59CC8A05}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B22AA9E5-ABDF-41AC-AE9F-09EA59CC8A05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4512AE3E-F52F-4F56-BDB5-94A7A78C74CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4512AE3E-F52F-4F56-BDB5-94A7A78C74CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4512AE3E-F52F-4F56-BDB5-94A7A78C74CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4512AE3E-F52F-4F56-BDB5-94A7A78C74CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

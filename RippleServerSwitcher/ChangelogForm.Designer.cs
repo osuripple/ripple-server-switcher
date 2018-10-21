@@ -28,21 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Bloom bloom31 = new Bloom();
-            Bloom bloom32 = new Bloom();
-            Bloom bloom33 = new Bloom();
-            Bloom bloom34 = new Bloom();
-            Bloom bloom35 = new Bloom();
-            Bloom bloom36 = new Bloom();
-            Bloom bloom37 = new Bloom();
-            Bloom bloom38 = new Bloom();
-            Bloom bloom39 = new Bloom();
-            Bloom bloom40 = new Bloom();
-            Bloom bloom41 = new Bloom();
-            Bloom bloom42 = new Bloom();
-            Bloom bloom43 = new Bloom();
-            Bloom bloom44 = new Bloom();
-            Bloom bloom45 = new Bloom();
+            Bloom bloom1 = new Bloom();
+            Bloom bloom2 = new Bloom();
+            Bloom bloom3 = new Bloom();
+            Bloom bloom4 = new Bloom();
+            Bloom bloom5 = new Bloom();
+            Bloom bloom6 = new Bloom();
+            Bloom bloom7 = new Bloom();
+            Bloom bloom8 = new Bloom();
+            Bloom bloom9 = new Bloom();
+            Bloom bloom10 = new Bloom();
+            Bloom bloom11 = new Bloom();
+            Bloom bloom12 = new Bloom();
+            Bloom bloom13 = new Bloom();
+            Bloom bloom14 = new Bloom();
+            Bloom bloom15 = new Bloom();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChangelogForm));
             this.genuineTheme1 = new GenuineTheme();
             this.closeButton = new GenuineButton();
@@ -54,31 +54,31 @@
             // 
             this.genuineTheme1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
             this.genuineTheme1.BorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            bloom31.Name = "Back";
-            bloom31.Value = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
-            bloom32.Name = "Gradient1";
-            bloom32.Value = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            bloom33.Name = "Gradient2";
-            bloom33.Value = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
-            bloom34.Name = "Line1";
-            bloom34.Value = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            bloom35.Name = "Line2";
-            bloom35.Value = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(58)))), ((int)(((byte)(58)))));
-            bloom36.Name = "Text";
-            bloom36.Value = System.Drawing.Color.White;
-            bloom37.Name = "Border1";
-            bloom37.Value = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(58)))), ((int)(((byte)(58)))));
-            bloom38.Name = "Border2";
-            bloom38.Value = System.Drawing.Color.Black;
+            bloom1.Name = "Back";
+            bloom1.Value = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
+            bloom2.Name = "Gradient1";
+            bloom2.Value = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            bloom3.Name = "Gradient2";
+            bloom3.Value = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
+            bloom4.Name = "Line1";
+            bloom4.Value = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            bloom5.Name = "Line2";
+            bloom5.Value = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(58)))), ((int)(((byte)(58)))));
+            bloom6.Name = "Text";
+            bloom6.Value = System.Drawing.Color.White;
+            bloom7.Name = "Border1";
+            bloom7.Value = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(58)))), ((int)(((byte)(58)))));
+            bloom8.Name = "Border2";
+            bloom8.Value = System.Drawing.Color.Black;
             this.genuineTheme1.Colors = new Bloom[] {
-        bloom31,
-        bloom32,
-        bloom33,
-        bloom34,
-        bloom35,
-        bloom36,
-        bloom37,
-        bloom38};
+        bloom1,
+        bloom2,
+        bloom3,
+        bloom4,
+        bloom5,
+        bloom6,
+        bloom7,
+        bloom8};
             this.genuineTheme1.Controls.Add(this.closeButton);
             this.genuineTheme1.Controls.Add(this.textBox1);
             this.genuineTheme1.Customization = "KSkp/xkZGf8pKSn/GRkZ/zo6Ov//////Ojo6/wAAAP8=";
@@ -99,28 +99,28 @@
             // 
             // closeButton
             // 
-            bloom39.Name = "DownGradient1";
-            bloom39.Value = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
-            bloom40.Name = "DownGradient2";
-            bloom40.Value = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            bloom41.Name = "NoneGradient1";
-            bloom41.Value = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            bloom42.Name = "NoneGradient2";
-            bloom42.Value = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
-            bloom43.Name = "Text";
-            bloom43.Value = System.Drawing.Color.White;
-            bloom44.Name = "Border1";
-            bloom44.Value = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            bloom45.Name = "Border2";
-            bloom45.Value = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            bloom9.Name = "DownGradient1";
+            bloom9.Value = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
+            bloom10.Name = "DownGradient2";
+            bloom10.Value = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            bloom11.Name = "NoneGradient1";
+            bloom11.Value = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            bloom12.Name = "NoneGradient2";
+            bloom12.Value = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
+            bloom13.Name = "Text";
+            bloom13.Value = System.Drawing.Color.White;
+            bloom14.Name = "Border1";
+            bloom14.Value = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            bloom15.Name = "Border2";
+            bloom15.Value = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
             this.closeButton.Colors = new Bloom[] {
-        bloom39,
-        bloom40,
-        bloom41,
-        bloom42,
-        bloom43,
-        bloom44,
-        bloom45};
+        bloom9,
+        bloom10,
+        bloom11,
+        bloom12,
+        bloom13,
+        bloom14,
+        bloom15};
             this.closeButton.Customization = "KSkp/zMzM/8zMzP/KSkp//////////8MGRkZ/w==";
             this.closeButton.Font = new System.Drawing.Font("Verdana", 8F);
             this.closeButton.Image = null;
