@@ -19,6 +19,13 @@ namespace RippleServerSwitcher
         [STAThread]
         static void Main()
         {
+            AppDomain.CurrentDomain.UnhandledException += (sender, args) =>
+            {
+                bool reported = false;
+                MessageBox.Show("Unhandled exception: " + args.ExceptionObject + "\n\n" + (reported ? "The error has been reported to Ripple." : "Please report the error to Ripple."), "Oh no!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Environment.Exit(1);
+            };
+
             if (Environment.OSVersion.Version.Major >= 6)
                 SetProcessDPIAware();
             Application.EnableVisualStyles();

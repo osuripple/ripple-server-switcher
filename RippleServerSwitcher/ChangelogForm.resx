@@ -120,6 +120,8 @@
   <data name="textBox1.Text" xml:space="preserve">
     <value>v2.0.1.0
 - Add new c*.ppy.sh domains to hardcoded fallback domains
+- Ported to .NET Framework 4.5.0
+- Show unhandled exceptions on screen
 
 v2.0.0.0
 - Total refactoring

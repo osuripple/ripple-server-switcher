@@ -17,16 +17,22 @@ namespace RippleServerSwitcher
 
         public bool IsCertificateInstalled()
         {
-            using (X509Store store = new X509Store(StoreName.Root, StoreLocation.CurrentUser))
+            X509Store store = new X509Store(StoreName.Root, StoreLocation.CurrentUser);
+            try
             {
                 store.Open(OpenFlags.ReadWrite);
                 return FindRippleCertificates(store).Count > 0;
+            }
+            finally
+            {
+                store.Close();
             }
         }
 
         public void InstallCertificate()
         {
-            using (X509Store store = new X509Store(StoreName.Root, StoreLocation.CurrentUser))
+            X509Store store = new X509Store(StoreName.Root, StoreLocation.CurrentUser);
+            try
             {
                 store.Open(OpenFlags.ReadWrite);
                 if (FindRippleCertificates(store).Count > 0)
@@ -48,15 +54,24 @@ namespace RippleServerSwitcher
                         );
                     }
             }
+            finally
+            {
+                store.Close();
+            }
         }
 
         public void RemoveCertificates()
         {
-            using (X509Store store = new X509Store(StoreName.Root, StoreLocation.CurrentUser))
+            X509Store store = new X509Store(StoreName.Root, StoreLocation.CurrentUser);
+            try
             {
                 store.Open(OpenFlags.ReadWrite);
                 foreach (X509Certificate2 c in FindRippleCertificates(store))
                     store.Remove(c);
+            }
+            finally
+            {
+                store.Close();
             }
         }
     }
