@@ -118,7 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="textBox1.Text" xml:space="preserve">
-    <value>v2.0.0.0
+    <value>v2.0.1.0
+- Add new c*.ppy.sh domains to hardcoded fallback domains
+
+v2.0.0.0
 - Total refactoring
 - Made the server switcher easier to use
 - Get redirections remotely
