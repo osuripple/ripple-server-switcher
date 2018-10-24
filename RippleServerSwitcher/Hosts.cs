@@ -73,6 +73,8 @@ namespace RippleServerSwitcher
             try
             {
                 Entries.Clear();
+                if (!File.Exists(hostsFilePath))
+                    return;
                 using (StreamReader reader = new StreamReader(hostsFilePath))
                 {
                     string line;
@@ -97,13 +99,16 @@ namespace RippleServerSwitcher
 
         public async Task Write(int maxRetries=3, int retryDelay=1000)
         {
-            FileInfo fileInfo = new FileInfo(hostsFilePath);
-            if (fileInfo.IsReadOnly)
-                fileInfo.IsReadOnly = false;
             int retries = 0;
-
             try
             {
+                if (File.Exists(hostsFilePath))
+                {
+                    FileInfo fileInfo = new FileInfo(hostsFilePath);
+                    if (fileInfo.IsReadOnly)
+                        fileInfo.IsReadOnly = false;
+                }
+
                 FileStream fs = new FileStream(hostsFilePath, FileMode.Create, FileAccess.ReadWrite, FileShare.None);
                 using (StreamReader reader = new StreamReader(fs))
                 {
