@@ -117,54 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="textBox1.Text" xml:space="preserve">
-    <value>v2.0.1.2
-- Fix hosts file not being closed correctly after creating it
-
-v2.0.1.1
-- Fix server switcher not working if hosts file doesn't exist
-
-v2.0.1.0
-- Add new c*.ppy.sh domains to hardcoded fallback domains
-- Ported to .NET Framework 4.5.0
-- Show unhandled exceptions on screen
-
-v2.0.0.0
-- Total refactoring
-- Made the server switcher easier to use
-- Get redirections remotely
-- Add inspect mode
-- Add updater
-- Add support for high DPI screens
-
-v1.4
-- Add redirection for i.ppy.sh
-
-v1.3
-- Add mirror IP
-- Add local server check
-- Add local/remote button (for Ripple developers)
-
-v.1.2
-- Add automatic IP update if server IP changes
-- Add update IP button to get ripple's IP directly from the server
-
-v1.12
-- Add hosts file exist check
-- Support for non default windirs
-
-v1.11
-- Update HTTPS certificate
-
-v1.10
-- Add HTTPS certificate installer
-
-v0.91
-- Changed some stuff in updater
-
-v0.90
-- First release</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

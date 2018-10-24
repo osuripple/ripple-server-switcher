@@ -46,7 +46,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChangelogForm));
             this.genuineTheme1 = new GenuineTheme();
             this.closeButton = new GenuineButton();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.changelogTextBox = new System.Windows.Forms.TextBox();
             this.genuineTheme1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -80,7 +80,7 @@
         bloom7,
         bloom8};
             this.genuineTheme1.Controls.Add(this.closeButton);
-            this.genuineTheme1.Controls.Add(this.textBox1);
+            this.genuineTheme1.Controls.Add(this.changelogTextBox);
             this.genuineTheme1.Customization = "KSkp/xkZGf8pKSn/GRkZ/zo6Ov//////Ojo6/wAAAP8=";
             this.genuineTheme1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.genuineTheme1.Font = new System.Drawing.Font("Verdana", 8F);
@@ -134,21 +134,20 @@
             this.closeButton.Transparent = false;
             this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
             // 
-            // textBox1
+            // changelogTextBox
             // 
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.ForeColor = System.Drawing.Color.White;
-            this.textBox1.Location = new System.Drawing.Point(16, 48);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(410, 162);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.TabStop = false;
-            this.textBox1.Text = resources.GetString("textBox1.Text");
+            this.changelogTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
+            this.changelogTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.changelogTextBox.ForeColor = System.Drawing.Color.White;
+            this.changelogTextBox.Location = new System.Drawing.Point(16, 48);
+            this.changelogTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.changelogTextBox.Multiline = true;
+            this.changelogTextBox.Name = "changelogTextBox";
+            this.changelogTextBox.ReadOnly = true;
+            this.changelogTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.changelogTextBox.Size = new System.Drawing.Size(410, 162);
+            this.changelogTextBox.TabIndex = 0;
+            this.changelogTextBox.TabStop = false;
             // 
             // ChangelogForm
             // 
@@ -162,6 +161,7 @@
             this.Name = "ChangelogForm";
             this.Text = "Changelog";
             this.TransparencyKey = System.Drawing.Color.Fuchsia;
+            this.Shown += new System.EventHandler(this.ChangelogForm_Shown);
             this.genuineTheme1.ResumeLayout(false);
             this.genuineTheme1.PerformLayout();
             this.ResumeLayout(false);
@@ -171,7 +171,7 @@
         #endregion
 
         private GenuineTheme genuineTheme1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox changelogTextBox;
         private GenuineButton closeButton;
     }
 }
