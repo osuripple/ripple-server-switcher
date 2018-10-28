@@ -69,6 +69,7 @@ namespace RippleServerSwitcher
             hostsFile.semaphore.Wait();
             try
             {
+                // TODO: Check all entries? May screw things up when first launching and the remote IPs have been updated.
                 return hostsFile.Entries.Any(x => x is HostsEntry && ((HostsEntry)x).domain.Contains(".ppy.sh"));
             }
             finally
@@ -90,6 +91,9 @@ namespace RippleServerSwitcher
             {
                 hostsFile.semaphore.Release();
             }
+            await hostsFile.Parse();
+            if (IsConnectedToRipple())
+                throw new HumanReadableException("Can't delete entries. Disable antivirus.", "The hosts file looks writable, but Ripple Server Switcher wasn't able to delete the entries from it and switch back to osu!. There is most likely a software blocking access to the hosts file. Please disable your antivirus, third party firewall or any similar software that may block edits on the hosts file.");
         }
         
         public async Task ConnectToRipple()
@@ -113,6 +117,9 @@ namespace RippleServerSwitcher
             {
                 hostsFile.semaphore.Release();
             }
+            await hostsFile.Parse();
+            if (!IsConnectedToRipple())
+                throw new HumanReadableException("Can't write entries. Disable antivirus.", "The hosts file looks writable, but Ripple Server Switcher wasn't able to write the required entries to it and switch to ripple. There is most likely a software blocking access to the hosts file. Please disable your antivirus, third party firewall or any similar software that may block edits on the hosts file.");
         }
 
         public async Task UpdateIPs()

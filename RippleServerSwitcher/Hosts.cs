@@ -14,8 +14,10 @@ namespace RippleServerSwitcher
 
     class ArbitraryHostsEntry : BaseHostsEntry
     {
-        public string content;
+        private string content;
         public override string ToString() => content;
+
+        public ArbitraryHostsEntry(string content) => this.content = content;
 
         public override bool Equals(object obj)
         {
@@ -82,7 +84,7 @@ namespace RippleServerSwitcher
                     {
                         if (line.StartsWith("#") || line.Length == 0)
                         {
-                            Entries.Add(new ArbitraryHostsEntry { content=line });
+                            Entries.Add(new ArbitraryHostsEntry(line));
                             continue;
                         }
                         Match m = HostEntryRegex.Match(line);

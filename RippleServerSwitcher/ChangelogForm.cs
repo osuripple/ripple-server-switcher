@@ -9,6 +9,14 @@ namespace RippleServerSwitcher
         private readonly Dictionary<string, string[]> entries = new Dictionary<string, string[]>
         {
             {
+                "v2.0.1.3",
+                new string[]
+                {
+                    "Re-parse the hosts file after writing it",
+                    "Check response content when testing the connection towards ripple"
+                }
+            },
+            {
                 "v2.0.1.2",
                 new string[]
                 {

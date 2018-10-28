@@ -56,7 +56,7 @@ namespace RippleServerSwitcher
                 hostsFileReadableLabel.ForeColor = Color.Red;
             }
 
-            ArbitraryHostsEntry testEntry = new ArbitraryHostsEntry { content = "# rss test" };
+            ArbitraryHostsEntry testEntry = new ArbitraryHostsEntry(String.Format("# rss test {0}", Guid.NewGuid().ToString()));
             hostsFileWritableLabel.Text = "...";
             hostsFileWritableLabel.ForeColor = Color.Blue;
 
@@ -64,8 +64,12 @@ namespace RippleServerSwitcher
             {
                 h.Entries.Add(testEntry);
                 await h.Write();
-                h.Entries.Remove(testEntry);
+                await h.Parse();
+                if (!h.Entries.Any(x => x is ArbitraryHostsEntry && ((ArbitraryHostsEntry)x).Equals(testEntry)))
+                    throw new Exception();
+                h.Entries.RemoveAll(x => x.ToString() == testEntry.ToString());
                 await h.Write();
+                await h.Parse();
                 hostsFileWritableLabel.Text = "YES";
                 hostsFileWritableLabel.ForeColor = Color.Green;
             }
@@ -153,8 +157,8 @@ namespace RippleServerSwitcher
                 {
                     "https://c.ripple.moe",
                     "https://c.ppy.sh",
-                    "https://ripple.moe/web/osu-osz2-getscores.php",
-                    "https://osu.ppy.sh/web/osu-osz2-getscores.php"
+                    "https://ripple.moe/web/",
+                    "https://osu.ppy.sh/web/"
                 };
                 var checkers = domains.Zip(labels, (d, l) => (new ConnectionChecker(d), l));
                 foreach ((ConnectionChecker checker, Label label) in checkers)
@@ -173,6 +177,11 @@ namespace RippleServerSwitcher
                     catch (CertificateException)
                     {
                         label.Text = "CERT ERROR";
+                        label.ForeColor = Color.Red;
+                    }
+                    catch (NoRedirectionException)
+                    {
+                        label.Text = "NOT RIPPLE";
                         label.ForeColor = Color.Red;
                     }
                     catch (Exception ex)
@@ -199,6 +208,7 @@ namespace RippleServerSwitcher
         public NonOkResponse(HttpStatusCode code) => StatusCode = code;
     }
     class CertificateException : ConnectionCheckerException { }
+    class NoRedirectionException : ConnectionCheckerException { }
 
     class ConnectionChecker
     {
@@ -216,8 +226,10 @@ namespace RippleServerSwitcher
             {
                 using (HttpResponseMessage result = await httpClient.GetAsync(Endpoint))
                 {
-                    if (result.StatusCode != System.Net.HttpStatusCode.OK)
+                    if (result.StatusCode != HttpStatusCode.OK)
                         throw new NonOkResponse(result.StatusCode);
+                    if (!((await result.Content.ReadAsStringAsync()).ToLower().Contains("ripple")))
+                        throw new NoRedirectionException();
                 }
             }
             catch (HttpRequestException ex) when (ex.InnerException != null && ex.InnerException.InnerException is AuthenticationException)
