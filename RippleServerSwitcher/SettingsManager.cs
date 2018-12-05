@@ -34,6 +34,11 @@ namespace RippleServerSwitcher
             try
             {
                 s = JsonConvert.DeserializeObject<Settings>(text);
+                if (s == null)
+                {
+                    File.Delete(FilePath);
+                    return CreateEmpty();
+                }
             }
             catch (ArgumentException)
             {
