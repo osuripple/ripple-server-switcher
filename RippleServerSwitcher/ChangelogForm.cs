@@ -9,6 +9,13 @@ namespace RippleServerSwitcher
         private readonly Dictionary<string, string[]> entries = new Dictionary<string, string[]>
         {
             {
+                "v2.0.1.5",
+                new string[]
+                {
+                    "Fix switcher parsing/writing some hosts file entries incorrectly"
+                }
+            },
+            {
                 "v2.0.1.4",
                 new string[]
                 {

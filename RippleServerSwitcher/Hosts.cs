@@ -82,14 +82,15 @@ namespace RippleServerSwitcher
                     string line;
                     while ((line = await reader.ReadLineAsync()) != null)
                     {
-                        if (line.StartsWith("#") || line.Length == 0)
+                        Match m = HostEntryRegex.Match(line);
+                        if (m.Success) // line.StartsWith("#") || line.Length == 0)
+                        {
+                            Entries.Add(new HostsEntry { ip = m.Groups["address"].Value, domain = m.Groups["name"].Value });
+                        }
+                        else
                         {
                             Entries.Add(new ArbitraryHostsEntry(line));
-                            continue;
                         }
-                        Match m = HostEntryRegex.Match(line);
-                        if (m.Success)
-                            Entries.Add(new HostsEntry { ip = m.Groups["address"].Value, domain = m.Groups["name"].Value });
                     }
                 }
             }
@@ -118,8 +119,11 @@ namespace RippleServerSwitcher
                     {
                         string line;
                         while ((line = await reader.ReadLineAsync()) != null)
+                        {
+                            // TODO: Consider regex? We may have .ppy.sh in comments/other non-ripple stuff
                             if (!line.Contains(".ppy.sh"))
                                 await writer.WriteLineAsync(line);
+                        }
                         foreach (BaseHostsEntry entry in Entries)
                             await writer.WriteLineAsync(entry.ToString());
                     }
