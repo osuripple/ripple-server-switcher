@@ -9,6 +9,13 @@ namespace RippleServerSwitcher
         private readonly Dictionary<string, string[]> entries = new Dictionary<string, string[]>
         {
             {
+                "v2.0.1.4",
+                new string[]
+                {
+                    "Correctly handle empty config file"
+                }
+            },
+            {
                 "v2.0.1.3",
                 new string[]
                 {
