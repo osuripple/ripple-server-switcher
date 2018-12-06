@@ -33,6 +33,8 @@ namespace RippleServerSwitcher
             updateCertificateStatus();
         }
 
+        private void updateErrorReportCheckbox() => errorReportCheckbox.Checked = Program.Switcher.Settings.ReportCrashStatus != ReportCrashStatus.NO;
+
         private void updateCertificateStatus()
         {
             bool installed = Program.Switcher.CertificateManager.IsCertificateInstalled();
@@ -91,6 +93,7 @@ namespace RippleServerSwitcher
                 currentDomains.Items.Add(uiHostsEntry(entry));
             foreach (HostsEntry entry in Switcher.FallbackOfflineIPs)
                 fallbackDomains.Items.Add(uiHostsEntry(entry));
+            updateErrorReportCheckbox();
             updateCertificateStatus();
             await updateHostsFileStatus();
             await updateIPServerStatus();
@@ -199,6 +202,13 @@ namespace RippleServerSwitcher
         }
 
         private void closeButton_Click(object sender, EventArgs e) => Close();
+
+        private async void errorReportCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            ReportCrashStatus newStatus = ((CheckBox)sender).Checked ? ReportCrashStatus.YES : ReportCrashStatus.NO;
+            Program.Switcher.Settings.ReportCrashStatus = newStatus;
+            await Program.Switcher.Settings.Save();
+        }
     }
 
     class ConnectionCheckerException : Exception { }

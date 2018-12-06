@@ -9,6 +9,14 @@ namespace RippleServerSwitcher
         private readonly Dictionary<string, string[]> entries = new Dictionary<string, string[]>
         {
             {
+                "v2.0.2.0",
+                new string[]
+                {
+                    "Add (optional) error reporting",
+                    "Changed updater"
+                }
+            },
+            {
                 "v2.0.1.5",
                 new string[]
                 {

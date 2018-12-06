@@ -36,6 +36,13 @@
             Bloom bloom6 = new Bloom();
             Bloom bloom7 = new Bloom();
             Bloom bloom8 = new Bloom();
+            Bloom bloom9 = new Bloom();
+            Bloom bloom10 = new Bloom();
+            Bloom bloom11 = new Bloom();
+            Bloom bloom12 = new Bloom();
+            Bloom bloom13 = new Bloom();
+            Bloom bloom14 = new Bloom();
+            Bloom bloom15 = new Bloom();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
             Bloom bloom16 = new Bloom();
             Bloom bloom17 = new Bloom();
@@ -58,14 +65,9 @@
             Bloom bloom34 = new Bloom();
             Bloom bloom35 = new Bloom();
             Bloom bloom36 = new Bloom();
-            Bloom bloom9 = new Bloom();
-            Bloom bloom10 = new Bloom();
-            Bloom bloom11 = new Bloom();
-            Bloom bloom12 = new Bloom();
-            Bloom bloom13 = new Bloom();
-            Bloom bloom14 = new Bloom();
-            Bloom bloom15 = new Bloom();
             this.genuineTheme1 = new GenuineTheme();
+            this.errorReportCheckbox = new System.Windows.Forms.CheckBox();
+            this.closeButton = new GenuineButton();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.label9 = new System.Windows.Forms.Label();
             this.scoresOsuStatusLabel = new System.Windows.Forms.Label();
@@ -78,6 +80,7 @@
             this.label15 = new System.Windows.Forms.Label();
             this.testRippleConnectionButton = new GenuineButton();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.ipServerStatusLabel = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -100,8 +103,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.fallbackDomains = new System.Windows.Forms.ListBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.closeButton = new GenuineButton();
             this.genuineTheme1.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -140,6 +141,7 @@
         bloom6,
         bloom7,
         bloom8};
+            this.genuineTheme1.Controls.Add(this.errorReportCheckbox);
             this.genuineTheme1.Controls.Add(this.closeButton);
             this.genuineTheme1.Controls.Add(this.groupBox7);
             this.genuineTheme1.Controls.Add(this.groupBox5);
@@ -156,11 +158,60 @@
             this.genuineTheme1.Name = "genuineTheme1";
             this.genuineTheme1.NoRounding = false;
             this.genuineTheme1.Sizable = false;
-            this.genuineTheme1.Size = new System.Drawing.Size(909, 475);
+            this.genuineTheme1.Size = new System.Drawing.Size(909, 500);
             this.genuineTheme1.SmartBounds = true;
             this.genuineTheme1.TabIndex = 0;
             this.genuineTheme1.Text = "Advanced settings";
             this.genuineTheme1.TransparencyKey = System.Drawing.Color.Fuchsia;
+            // 
+            // errorReportCheckbox
+            // 
+            this.errorReportCheckbox.AutoSize = true;
+            this.errorReportCheckbox.ForeColor = System.Drawing.Color.White;
+            this.errorReportCheckbox.Location = new System.Drawing.Point(12, 471);
+            this.errorReportCheckbox.Name = "errorReportCheckbox";
+            this.errorReportCheckbox.Size = new System.Drawing.Size(193, 21);
+            this.errorReportCheckbox.TabIndex = 23;
+            this.errorReportCheckbox.Text = "Report errors to Ripple";
+            this.errorReportCheckbox.UseVisualStyleBackColor = true;
+            this.errorReportCheckbox.CheckedChanged += new System.EventHandler(this.errorReportCheckbox_CheckedChanged);
+            // 
+            // closeButton
+            // 
+            bloom9.Name = "DownGradient1";
+            bloom9.Value = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
+            bloom10.Name = "DownGradient2";
+            bloom10.Value = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            bloom11.Name = "NoneGradient1";
+            bloom11.Value = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            bloom12.Name = "NoneGradient2";
+            bloom12.Value = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
+            bloom13.Name = "Text";
+            bloom13.Value = System.Drawing.Color.White;
+            bloom14.Name = "Border1";
+            bloom14.Value = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            bloom15.Name = "Border2";
+            bloom15.Value = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.closeButton.Colors = new Bloom[] {
+        bloom9,
+        bloom10,
+        bloom11,
+        bloom12,
+        bloom13,
+        bloom14,
+        bloom15};
+            this.closeButton.Customization = "KSkp/zMzM/8zMzP/KSkp//////////8MGRkZ/w==";
+            this.closeButton.Font = new System.Drawing.Font("Verdana", 8F);
+            this.closeButton.Image = null;
+            this.closeButton.Location = new System.Drawing.Point(876, 4);
+            this.closeButton.Margin = new System.Windows.Forms.Padding(4);
+            this.closeButton.Name = "closeButton";
+            this.closeButton.NoRounding = false;
+            this.closeButton.Size = new System.Drawing.Size(29, 21);
+            this.closeButton.TabIndex = 22;
+            this.closeButton.Text = "x";
+            this.closeButton.Transparent = false;
+            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
             // 
             // groupBox7
             // 
@@ -326,6 +377,18 @@
             this.groupBox5.TabIndex = 20;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "IP Server";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(18, 52);
+            this.label11.MaximumSize = new System.Drawing.Size(275, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(256, 85);
+            this.label11.TabIndex = 27;
+            this.label11.Text = "Checks if the server that serves up to date redirections for ripple is online or " +
+    "not. If it\'s offline, the fallback redirections will be used instead.";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ipServerStatusLabel
             // 
@@ -636,60 +699,11 @@
             this.fallbackDomains.Size = new System.Drawing.Size(276, 82);
             this.fallbackDomains.TabIndex = 16;
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(18, 52);
-            this.label11.MaximumSize = new System.Drawing.Size(275, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(256, 85);
-            this.label11.TabIndex = 27;
-            this.label11.Text = "Checks if the server that serves up to date redirections for ripple is online or " +
-    "not. If it\'s offline, the fallback redirections will be used instead.";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // closeButton
-            // 
-            bloom9.Name = "DownGradient1";
-            bloom9.Value = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
-            bloom10.Name = "DownGradient2";
-            bloom10.Value = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            bloom11.Name = "NoneGradient1";
-            bloom11.Value = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            bloom12.Name = "NoneGradient2";
-            bloom12.Value = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
-            bloom13.Name = "Text";
-            bloom13.Value = System.Drawing.Color.White;
-            bloom14.Name = "Border1";
-            bloom14.Value = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            bloom15.Name = "Border2";
-            bloom15.Value = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.closeButton.Colors = new Bloom[] {
-        bloom9,
-        bloom10,
-        bloom11,
-        bloom12,
-        bloom13,
-        bloom14,
-        bloom15};
-            this.closeButton.Customization = "KSkp/zMzM/8zMzP/KSkp//////////8MGRkZ/w==";
-            this.closeButton.Font = new System.Drawing.Font("Verdana", 8F);
-            this.closeButton.Image = null;
-            this.closeButton.Location = new System.Drawing.Point(876, 4);
-            this.closeButton.Margin = new System.Windows.Forms.Padding(4);
-            this.closeButton.Name = "closeButton";
-            this.closeButton.NoRounding = false;
-            this.closeButton.Size = new System.Drawing.Size(29, 21);
-            this.closeButton.TabIndex = 22;
-            this.closeButton.Text = "x";
-            this.closeButton.Transparent = false;
-            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
-            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(909, 475);
+            this.ClientSize = new System.Drawing.Size(909, 500);
             this.Controls.Add(this.genuineTheme1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -698,6 +712,7 @@
             this.TransparencyKey = System.Drawing.Color.Fuchsia;
             this.Shown += new System.EventHandler(this.SettingsForm_Shown);
             this.genuineTheme1.ResumeLayout(false);
+            this.genuineTheme1.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             this.groupBox5.ResumeLayout(false);
@@ -753,5 +768,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label11;
         private GenuineButton closeButton;
+        private System.Windows.Forms.CheckBox errorReportCheckbox;
     }
 }

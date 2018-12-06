@@ -5,6 +5,7 @@ using RippleServerSwitcher.Properties;
 using System.Security.Principal;
 using System.Diagnostics;
 using System.IO;
+using System.ComponentModel;
 
 namespace RippleServerSwitcher
 {
@@ -47,12 +48,12 @@ namespace RippleServerSwitcher
             get { return _latestException; }
             set
             {
+                if (!(value is HumanReadableException) && switcher.Settings.ReportCrashStatus != ReportCrashStatus.NO)
+                    switcher.RavenClient.Capture(new SharpRaven.Data.SentryEvent(value));
                 bottomErrorText = value is HumanReadableException ? ((HumanReadableException)value).UIMessage : "An unhandled exception has occurred.";
                 _latestException = value;
             }
         }
-
-        private Updater.Updater updater = new Updater.Updater();
 
         public MainForm()
         {
@@ -78,12 +79,29 @@ namespace RippleServerSwitcher
                 Environment.Exit(0);
             }
 
+            bottomText = "Updating updater...";
+            updateUpdateUnpacker();
+
             try
             {
                 bottomText = "Fetching servers IPs...";
                 updateStatus();
 
                 switcher.Settings = await SettingsManager.Load();
+
+                if (switcher.Settings.ReportCrashStatus == ReportCrashStatus.NOT_ASKED)
+                {
+                    DialogResult result = MessageBox.Show(
+                         "Do you want to help ripple make the server switcher better by submitting " +
+                         "crash reports to our error reporting service?\n" +
+                         "(You can always toggle this setting from the \"Inspect\" menu).",
+                         "Error reporting",
+                         MessageBoxButtons.YesNo
+                    );
+                    switcher.Settings.ReportCrashStatus = result == DialogResult.Yes ? ReportCrashStatus.YES : ReportCrashStatus.NO;
+                    await switcher.Settings.Save();
+                }
+
                 if (switcher.Settings.LatestChangelog != Program.VersionNumber)
                 {
                     new ChangelogForm().ShowDialog();
@@ -103,12 +121,12 @@ namespace RippleServerSwitcher
                 bottomText = "Checking updates...";
                 try
                 {
-                    await updater.CheckUpdates();
-                    if (updater.NewUpdateAvailable)
+                    await switcher.Updater.CheckUpdates();
+                    if (switcher.Updater.NewUpdateAvailable)
                     {
                         DialogResult result = MessageBox.Show("There's a new update available. Do you want to download it now?", "Updater", MessageBoxButtons.YesNo);
                         if (result == DialogResult.Yes)
-                            startUpdater();
+                            new UpdaterForm().ShowDialog();
                     }
                     bottomText = "";
                 }
@@ -187,32 +205,41 @@ namespace RippleServerSwitcher
             await switcher.Settings.Save();
             Application.Exit();
         }
-
-        private void startUpdater()
-        {
-            if (!File.Exists("updater.exe"))
-            {
-                MessageBox.Show("Cannot find updater. Please re-download the application.");
-                return;
-            }
-            Process updater = new Process();
-            updater.StartInfo.FileName = "updater.exe";
-            try
-            {
-                updater.Start();
-                Environment.Exit(0);
-            }
-            catch (Exception e)
-            {
-                latestException = e;
-            }
-        }
-
+        
         private void aboutButton_Click(object sender, EventArgs e) => new AboutForm().ShowDialog();
 
         private void inspectButton_click(object sender, EventArgs e)
         {
             new SettingsForm().ShowDialog();
+        }
+
+        private void updateUpdateUnpacker()
+        {
+            if (!File.Exists("UpdateUnpacker.exe.new"))
+                return;
+            foreach (Process p in Process.GetProcessesByName("UpdateUnpacker"))
+            {
+                try
+                {
+                    p.Kill();
+                }
+                catch (Win32Exception)
+                {
+                    throw new HumanReadableException("Cannot kill updater", "The update unpacker is running but the switcher wasn't able to kill it. Please close it manually or restart your computer.");
+                }
+            }
+
+            try
+            {
+                if (File.Exists("UpdateUnpacker.exe"))
+                    File.Delete("UpdateUnpacker.exe");
+                File.Move("UpdateUnpacker.exe.new", "UpdateUnpacker.exe");
+                File.Delete("UpdateUnpacker.exe.new");
+            }
+            catch (UnauthorizedAccessException)
+            {
+                throw new HumanReadableException("Cannot replace updater", "Unhautorized access. Maybe UpdateUnpacker.exe is in read only mode?");
+            }
         }
     }
 }

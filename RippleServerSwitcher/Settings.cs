@@ -8,10 +8,18 @@ using System.Threading.Tasks;
 
 namespace RippleServerSwitcher
 {
+    enum ReportCrashStatus
+    {
+        NO,
+        YES,
+        NOT_ASKED
+    }
+
     class Settings
     {
         public List<HostsEntry> IPsBackup = new List<HostsEntry>();
         public int LatestChangelog = 0;
+        public ReportCrashStatus ReportCrashStatus = ReportCrashStatus.NOT_ASKED;
 
         public async Task Save()
         {
