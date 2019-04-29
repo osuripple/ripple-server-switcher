@@ -50,7 +50,7 @@ namespace RippleServerSwitcher
                         throw new HumanReadableException(
                             "You must install the certificate.",
                             "The certificate is needed to connect to Ripple through HTTPs. Without it, you won't be able to connect. " +
-                            "Click on 'Switch to ripple', then 'Yes' to install the certificate and switch to Ripple."
+                            "Please answer 'Yes' to the dialog window asking you to install the certificate in order to switch to Ripple."
                         );
                     }
             }
@@ -68,6 +68,10 @@ namespace RippleServerSwitcher
                 store.Open(OpenFlags.ReadWrite);
                 foreach (X509Certificate2 c in FindRippleCertificates(store))
                     store.Remove(c);
+            }
+            catch (CryptographicException)
+            {
+                throw new HumanReadableException("Removal halted by user.", "The certificate was not uninstalled because the user denied its removal.");
             }
             finally
             {
