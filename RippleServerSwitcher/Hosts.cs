@@ -134,7 +134,7 @@ namespace RippleServerSwitcher
                 await Task.Delay(retryDelay);
                 retries++;
             }
-            catch (UnauthorizedAccessException)
+            catch (Exception ex) when (ex is ArgumentException || ex is UnauthorizedAccessException)
             {
                 throw new HumanReadableException("Access denied. Turn off your antivirus.", "Cannot write the hosts file. This is often caused by the antivirus. Please try turning off your antivirus and try again.");
             }
