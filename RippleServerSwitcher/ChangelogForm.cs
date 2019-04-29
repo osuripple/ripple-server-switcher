@@ -8,6 +8,7 @@ namespace RippleServerSwitcher
     {
         private readonly Dictionary<string, string[]> entries = new Dictionary<string, string[]>
         {
+            { "v2.0.2.1", null },
             {
                 "v2.0.2.0",
                 new string[]
@@ -74,6 +75,8 @@ namespace RippleServerSwitcher
                 }
             }
         };
+        private readonly string[] defaultChangelog = new string[] { "Bugfixes and improvements" };
+        private string defaultChangelogEntry { get => defaultChangelog[0]; }
 
         public ChangelogForm() => InitializeComponent();
         private void closeButton_Click(object sender, EventArgs e) => Close();
@@ -85,7 +88,7 @@ namespace RippleServerSwitcher
                 if (changelogTextBox.Text.Length > 0)
                     changelogTextBox.Text += Environment.NewLine + Environment.NewLine;
                 changelogTextBox.Text += entry.Key + ":" + Environment.NewLine + "- ";
-                changelogTextBox.Text += String.Join(Environment.NewLine + "- ", entry.Value);
+                changelogTextBox.Text += String.Join($"{Environment.NewLine}- ", entry.Value ?? defaultChangelog);
             }
         }
     }
