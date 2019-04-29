@@ -30,16 +30,16 @@ namespace RippleServerSwitcher
     {
         public static readonly HostsEntry[] FallbackOfflineIPs = new HostsEntry[]
         {
-            new HostsEntry{domain="osu.ppy.sh", ip="163.172.71.251"},
-            new HostsEntry{domain="c.ppy.sh", ip="163.172.71.251"},
-            new HostsEntry{domain="ce.ppy.sh", ip="163.172.71.251"},
-            new HostsEntry{domain="a.ppy.sh", ip="163.172.71.251"},
-            new HostsEntry{domain="s.ppy.sh", ip="163.172.71.251"},
-            new HostsEntry{domain="i.ppy.sh", ip="163.172.71.251"},
-            new HostsEntry{domain="bm6.ppy.sh", ip="51.15.222.176"}
+            new HostsEntry{domain="osu.ppy.sh", ip="51.15.223.146"},
+            new HostsEntry{domain="c.ppy.sh", ip="51.15.223.146"},
+            new HostsEntry{domain="ce.ppy.sh", ip="51.15.223.146"},
+            new HostsEntry{domain="a.ppy.sh", ip="51.15.223.146"},
+            new HostsEntry{domain="s.ppy.sh", ip="51.15.223.146"},
+            new HostsEntry{domain="i.ppy.sh", ip="51.15.223.146"},
+            new HostsEntry{domain="bm6.ppy.sh", ip="51.15.223.146"}
         }.Concat(
             (from x in Enumerable.Range(1, 6) select
-                new HostsEntry{ domain=String.Format("c{0}.ppy.sh", x), ip="163.172.71.251" }
+                new HostsEntry{ domain=String.Format("c{0}.ppy.sh", x), ip="51.15.223.146" }
             ).ToArray()
         ).ToArray();
 
