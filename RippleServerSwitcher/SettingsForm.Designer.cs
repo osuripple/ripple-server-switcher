@@ -154,11 +154,12 @@
             this.genuineTheme1.Font = new System.Drawing.Font("Verdana", 8F);
             this.genuineTheme1.Image = null;
             this.genuineTheme1.Location = new System.Drawing.Point(0, 0);
+            this.genuineTheme1.Margin = new System.Windows.Forms.Padding(2);
             this.genuineTheme1.Movable = true;
             this.genuineTheme1.Name = "genuineTheme1";
             this.genuineTheme1.NoRounding = false;
             this.genuineTheme1.Sizable = false;
-            this.genuineTheme1.Size = new System.Drawing.Size(909, 500);
+            this.genuineTheme1.Size = new System.Drawing.Size(719, 406);
             this.genuineTheme1.SmartBounds = true;
             this.genuineTheme1.TabIndex = 0;
             this.genuineTheme1.Text = "Advanced settings";
@@ -168,9 +169,10 @@
             // 
             this.errorReportCheckbox.AutoSize = true;
             this.errorReportCheckbox.ForeColor = System.Drawing.Color.White;
-            this.errorReportCheckbox.Location = new System.Drawing.Point(12, 471);
+            this.errorReportCheckbox.Location = new System.Drawing.Point(9, 383);
+            this.errorReportCheckbox.Margin = new System.Windows.Forms.Padding(2);
             this.errorReportCheckbox.Name = "errorReportCheckbox";
-            this.errorReportCheckbox.Size = new System.Drawing.Size(193, 21);
+            this.errorReportCheckbox.Size = new System.Drawing.Size(157, 17);
             this.errorReportCheckbox.TabIndex = 23;
             this.errorReportCheckbox.Text = "Report errors to Ripple";
             this.errorReportCheckbox.UseVisualStyleBackColor = true;
@@ -203,11 +205,10 @@
             this.closeButton.Customization = "KSkp/zMzM/8zMzP/KSkp//////////8MGRkZ/w==";
             this.closeButton.Font = new System.Drawing.Font("Verdana", 8F);
             this.closeButton.Image = null;
-            this.closeButton.Location = new System.Drawing.Point(876, 4);
-            this.closeButton.Margin = new System.Windows.Forms.Padding(4);
+            this.closeButton.Location = new System.Drawing.Point(693, 3);
             this.closeButton.Name = "closeButton";
             this.closeButton.NoRounding = false;
-            this.closeButton.Size = new System.Drawing.Size(29, 21);
+            this.closeButton.Size = new System.Drawing.Size(22, 17);
             this.closeButton.TabIndex = 22;
             this.closeButton.Text = "x";
             this.closeButton.Transparent = false;
@@ -226,9 +227,11 @@
             this.groupBox7.Controls.Add(this.label15);
             this.groupBox7.Controls.Add(this.testRippleConnectionButton);
             this.groupBox7.ForeColor = System.Drawing.Color.Silver;
-            this.groupBox7.Location = new System.Drawing.Point(606, 201);
+            this.groupBox7.Location = new System.Drawing.Point(493, 164);
+            this.groupBox7.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(291, 262);
+            this.groupBox7.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox7.Size = new System.Drawing.Size(218, 213);
             this.groupBox7.TabIndex = 21;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Server connection";
@@ -236,10 +239,11 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(18, 143);
-            this.label9.MaximumSize = new System.Drawing.Size(275, 0);
+            this.label9.Location = new System.Drawing.Point(8, 116);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label9.MaximumSize = new System.Drawing.Size(206, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(258, 102);
+            this.label9.Size = new System.Drawing.Size(202, 91);
             this.label9.TabIndex = 26;
             this.label9.Text = resources.GetString("label9.Text");
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -249,9 +253,10 @@
             this.scoresOsuStatusLabel.AutoSize = true;
             this.scoresOsuStatusLabel.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Bold);
             this.scoresOsuStatusLabel.ForeColor = System.Drawing.Color.White;
-            this.scoresOsuStatusLabel.Location = new System.Drawing.Point(173, 79);
+            this.scoresOsuStatusLabel.Location = new System.Drawing.Point(130, 64);
+            this.scoresOsuStatusLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.scoresOsuStatusLabel.Name = "scoresOsuStatusLabel";
-            this.scoresOsuStatusLabel.Size = new System.Drawing.Size(23, 17);
+            this.scoresOsuStatusLabel.Size = new System.Drawing.Size(19, 13);
             this.scoresOsuStatusLabel.TabIndex = 25;
             this.scoresOsuStatusLabel.Text = "...";
             // 
@@ -259,9 +264,10 @@
             // 
             this.label20.AutoSize = true;
             this.label20.ForeColor = System.Drawing.Color.White;
-            this.label20.Location = new System.Drawing.Point(6, 79);
+            this.label20.Location = new System.Drawing.Point(4, 64);
+            this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(157, 17);
+            this.label20.Size = new System.Drawing.Size(126, 13);
             this.label20.TabIndex = 24;
             this.label20.Text = "Scores (osu.ppy.sh):";
             // 
@@ -270,9 +276,10 @@
             this.scoresRippleStatusLabel.AutoSize = true;
             this.scoresRippleStatusLabel.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Bold);
             this.scoresRippleStatusLabel.ForeColor = System.Drawing.Color.White;
-            this.scoresRippleStatusLabel.Location = new System.Drawing.Point(173, 60);
+            this.scoresRippleStatusLabel.Location = new System.Drawing.Point(130, 49);
+            this.scoresRippleStatusLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.scoresRippleStatusLabel.Name = "scoresRippleStatusLabel";
-            this.scoresRippleStatusLabel.Size = new System.Drawing.Size(23, 17);
+            this.scoresRippleStatusLabel.Size = new System.Drawing.Size(19, 13);
             this.scoresRippleStatusLabel.TabIndex = 23;
             this.scoresRippleStatusLabel.Text = "...";
             // 
@@ -280,9 +287,10 @@
             // 
             this.label18.AutoSize = true;
             this.label18.ForeColor = System.Drawing.Color.White;
-            this.label18.Location = new System.Drawing.Point(6, 60);
+            this.label18.Location = new System.Drawing.Point(4, 49);
+            this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(152, 17);
+            this.label18.Size = new System.Drawing.Size(126, 13);
             this.label18.TabIndex = 22;
             this.label18.Text = "Scores (ripple.moe):";
             // 
@@ -291,9 +299,10 @@
             this.banchoOsuStatusLabel.AutoSize = true;
             this.banchoOsuStatusLabel.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Bold);
             this.banchoOsuStatusLabel.ForeColor = System.Drawing.Color.White;
-            this.banchoOsuStatusLabel.Location = new System.Drawing.Point(173, 41);
+            this.banchoOsuStatusLabel.Location = new System.Drawing.Point(130, 33);
+            this.banchoOsuStatusLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.banchoOsuStatusLabel.Name = "banchoOsuStatusLabel";
-            this.banchoOsuStatusLabel.Size = new System.Drawing.Size(23, 17);
+            this.banchoOsuStatusLabel.Size = new System.Drawing.Size(19, 13);
             this.banchoOsuStatusLabel.TabIndex = 21;
             this.banchoOsuStatusLabel.Text = "...";
             // 
@@ -301,9 +310,10 @@
             // 
             this.label16.AutoSize = true;
             this.label16.ForeColor = System.Drawing.Color.White;
-            this.label16.Location = new System.Drawing.Point(6, 41);
+            this.label16.Location = new System.Drawing.Point(4, 33);
+            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(142, 17);
+            this.label16.Size = new System.Drawing.Size(115, 13);
             this.label16.TabIndex = 20;
             this.label16.Text = "Bancho (c.ppy.sh):";
             // 
@@ -312,9 +322,10 @@
             this.banchoRippleStatusLabel.AutoSize = true;
             this.banchoRippleStatusLabel.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Bold);
             this.banchoRippleStatusLabel.ForeColor = System.Drawing.Color.White;
-            this.banchoRippleStatusLabel.Location = new System.Drawing.Point(173, 22);
+            this.banchoRippleStatusLabel.Location = new System.Drawing.Point(130, 18);
+            this.banchoRippleStatusLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.banchoRippleStatusLabel.Name = "banchoRippleStatusLabel";
-            this.banchoRippleStatusLabel.Size = new System.Drawing.Size(23, 17);
+            this.banchoRippleStatusLabel.Size = new System.Drawing.Size(19, 13);
             this.banchoRippleStatusLabel.TabIndex = 19;
             this.banchoRippleStatusLabel.Text = "...";
             // 
@@ -322,9 +333,10 @@
             // 
             this.label15.AutoSize = true;
             this.label15.ForeColor = System.Drawing.Color.White;
-            this.label15.Location = new System.Drawing.Point(6, 22);
+            this.label15.Location = new System.Drawing.Point(4, 18);
+            this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(168, 17);
+            this.label15.Size = new System.Drawing.Size(139, 13);
             this.label15.TabIndex = 18;
             this.label15.Text = "Bancho (c.ripple.moe):";
             // 
@@ -355,11 +367,10 @@
             this.testRippleConnectionButton.Customization = "KSkp/zMzM/8zMzP/KSkp//////////8MGRkZ/w==";
             this.testRippleConnectionButton.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Italic);
             this.testRippleConnectionButton.Image = null;
-            this.testRippleConnectionButton.Location = new System.Drawing.Point(7, 108);
-            this.testRippleConnectionButton.Margin = new System.Windows.Forms.Padding(4);
+            this.testRippleConnectionButton.Location = new System.Drawing.Point(5, 88);
             this.testRippleConnectionButton.Name = "testRippleConnectionButton";
             this.testRippleConnectionButton.NoRounding = false;
-            this.testRippleConnectionButton.Size = new System.Drawing.Size(277, 31);
+            this.testRippleConnectionButton.Size = new System.Drawing.Size(208, 25);
             this.testRippleConnectionButton.TabIndex = 13;
             this.testRippleConnectionButton.Text = "Test connection to Ripple";
             this.testRippleConnectionButton.Transparent = false;
@@ -371,9 +382,11 @@
             this.groupBox5.Controls.Add(this.ipServerStatusLabel);
             this.groupBox5.Controls.Add(this.label10);
             this.groupBox5.ForeColor = System.Drawing.Color.Silver;
-            this.groupBox5.Location = new System.Drawing.Point(606, 43);
+            this.groupBox5.Location = new System.Drawing.Point(493, 35);
+            this.groupBox5.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(291, 146);
+            this.groupBox5.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox5.Size = new System.Drawing.Size(218, 119);
             this.groupBox5.TabIndex = 20;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "IP Server";
@@ -381,10 +394,11 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(18, 52);
-            this.label11.MaximumSize = new System.Drawing.Size(275, 0);
+            this.label11.Location = new System.Drawing.Point(7, 42);
+            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label11.MaximumSize = new System.Drawing.Size(206, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(256, 85);
+            this.label11.Size = new System.Drawing.Size(205, 65);
             this.label11.TabIndex = 27;
             this.label11.Text = "Checks if the server that serves up to date redirections for ripple is online or " +
     "not. If it\'s offline, the fallback redirections will be used instead.";
@@ -395,9 +409,10 @@
             this.ipServerStatusLabel.AutoSize = true;
             this.ipServerStatusLabel.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Bold);
             this.ipServerStatusLabel.ForeColor = System.Drawing.Color.White;
-            this.ipServerStatusLabel.Location = new System.Drawing.Point(66, 30);
+            this.ipServerStatusLabel.Location = new System.Drawing.Point(50, 24);
+            this.ipServerStatusLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.ipServerStatusLabel.Name = "ipServerStatusLabel";
-            this.ipServerStatusLabel.Size = new System.Drawing.Size(23, 17);
+            this.ipServerStatusLabel.Size = new System.Drawing.Size(19, 13);
             this.ipServerStatusLabel.TabIndex = 19;
             this.ipServerStatusLabel.Text = "...";
             // 
@@ -405,9 +420,10 @@
             // 
             this.label10.AutoSize = true;
             this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(6, 30);
+            this.label10.Location = new System.Drawing.Point(4, 24);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(61, 17);
+            this.label10.Size = new System.Drawing.Size(48, 13);
             this.label10.TabIndex = 18;
             this.label10.Text = "Status:";
             // 
@@ -422,9 +438,11 @@
             this.groupBox4.Controls.Add(this.label6);
             this.groupBox4.Controls.Add(this.label7);
             this.groupBox4.ForeColor = System.Drawing.Color.Silver;
-            this.groupBox4.Location = new System.Drawing.Point(309, 242);
+            this.groupBox4.Location = new System.Drawing.Point(271, 197);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(291, 221);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox4.Size = new System.Drawing.Size(218, 180);
             this.groupBox4.TabIndex = 20;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Hosts file";
@@ -434,9 +452,10 @@
             this.hostsFileRippleLabel.AutoSize = true;
             this.hostsFileRippleLabel.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Bold);
             this.hostsFileRippleLabel.ForeColor = System.Drawing.Color.White;
-            this.hostsFileRippleLabel.Location = new System.Drawing.Point(89, 53);
+            this.hostsFileRippleLabel.Location = new System.Drawing.Point(67, 39);
+            this.hostsFileRippleLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.hostsFileRippleLabel.Name = "hostsFileRippleLabel";
-            this.hostsFileRippleLabel.Size = new System.Drawing.Size(23, 17);
+            this.hostsFileRippleLabel.Size = new System.Drawing.Size(19, 13);
             this.hostsFileRippleLabel.TabIndex = 24;
             this.hostsFileRippleLabel.Text = "...";
             // 
@@ -444,9 +463,10 @@
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(27, 53);
+            this.label5.Location = new System.Drawing.Point(20, 39);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(56, 17);
+            this.label5.Size = new System.Drawing.Size(47, 13);
             this.label5.TabIndex = 23;
             this.label5.Text = "Ripple:";
             // 
@@ -455,9 +475,10 @@
             this.hostsFileWritableLabel.AutoSize = true;
             this.hostsFileWritableLabel.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Bold);
             this.hostsFileWritableLabel.ForeColor = System.Drawing.Color.White;
-            this.hostsFileWritableLabel.Location = new System.Drawing.Point(228, 30);
+            this.hostsFileWritableLabel.Location = new System.Drawing.Point(171, 20);
+            this.hostsFileWritableLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.hostsFileWritableLabel.Name = "hostsFileWritableLabel";
-            this.hostsFileWritableLabel.Size = new System.Drawing.Size(23, 17);
+            this.hostsFileWritableLabel.Size = new System.Drawing.Size(19, 13);
             this.hostsFileWritableLabel.TabIndex = 22;
             this.hostsFileWritableLabel.Text = "...";
             // 
@@ -465,9 +486,10 @@
             // 
             this.label8.AutoSize = true;
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(150, 30);
+            this.label8.Location = new System.Drawing.Point(112, 20);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(72, 17);
+            this.label8.Size = new System.Drawing.Size(59, 13);
             this.label8.TabIndex = 21;
             this.label8.Text = "Writable:";
             // 
@@ -498,11 +520,10 @@
             this.hostsHelpButton.Customization = "KSkp/zMzM/8zMzP/KSkp//////////8MGRkZ/w==";
             this.hostsHelpButton.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Italic);
             this.hostsHelpButton.Image = null;
-            this.hostsHelpButton.Location = new System.Drawing.Point(7, 74);
-            this.hostsHelpButton.Margin = new System.Windows.Forms.Padding(4);
+            this.hostsHelpButton.Location = new System.Drawing.Point(5, 56);
             this.hostsHelpButton.Name = "hostsHelpButton";
             this.hostsHelpButton.NoRounding = false;
-            this.hostsHelpButton.Size = new System.Drawing.Size(277, 31);
+            this.hostsHelpButton.Size = new System.Drawing.Size(208, 25);
             this.hostsHelpButton.TabIndex = 20;
             this.hostsHelpButton.Text = "Repeat r/w test";
             this.hostsHelpButton.Transparent = false;
@@ -513,9 +534,10 @@
             this.hostsFileReadableLabel.AutoSize = true;
             this.hostsFileReadableLabel.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Bold);
             this.hostsFileReadableLabel.ForeColor = System.Drawing.Color.White;
-            this.hostsFileReadableLabel.Location = new System.Drawing.Point(89, 30);
+            this.hostsFileReadableLabel.Location = new System.Drawing.Point(67, 20);
+            this.hostsFileReadableLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.hostsFileReadableLabel.Name = "hostsFileReadableLabel";
-            this.hostsFileReadableLabel.Size = new System.Drawing.Size(23, 17);
+            this.hostsFileReadableLabel.Size = new System.Drawing.Size(19, 13);
             this.hostsFileReadableLabel.TabIndex = 19;
             this.hostsFileReadableLabel.Text = "...";
             // 
@@ -523,19 +545,21 @@
             // 
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(6, 30);
+            this.label6.Location = new System.Drawing.Point(4, 20);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(77, 17);
+            this.label6.Size = new System.Drawing.Size(65, 13);
             this.label6.TabIndex = 18;
             this.label6.Text = "Readable:";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(9, 109);
-            this.label7.MaximumSize = new System.Drawing.Size(275, 0);
+            this.label7.Location = new System.Drawing.Point(7, 85);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.MaximumSize = new System.Drawing.Size(206, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(275, 102);
+            this.label7.Size = new System.Drawing.Size(205, 91);
             this.label7.TabIndex = 17;
             this.label7.Text = resources.GetString("label7.Text");
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -547,9 +571,11 @@
             this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Controls.Add(this.certificateButton);
             this.groupBox3.ForeColor = System.Drawing.Color.Silver;
-            this.groupBox3.Location = new System.Drawing.Point(309, 43);
+            this.groupBox3.Location = new System.Drawing.Point(271, 35);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(291, 193);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox3.Size = new System.Drawing.Size(218, 157);
             this.groupBox3.TabIndex = 19;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Certificate";
@@ -559,9 +585,10 @@
             this.certificateLabel.AutoSize = true;
             this.certificateLabel.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Bold);
             this.certificateLabel.ForeColor = System.Drawing.Color.White;
-            this.certificateLabel.Location = new System.Drawing.Point(66, 30);
+            this.certificateLabel.Location = new System.Drawing.Point(50, 24);
+            this.certificateLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.certificateLabel.Name = "certificateLabel";
-            this.certificateLabel.Size = new System.Drawing.Size(23, 17);
+            this.certificateLabel.Size = new System.Drawing.Size(19, 13);
             this.certificateLabel.TabIndex = 19;
             this.certificateLabel.Text = "...";
             // 
@@ -569,19 +596,21 @@
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(6, 30);
+            this.label4.Location = new System.Drawing.Point(4, 24);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(61, 17);
+            this.label4.Size = new System.Drawing.Size(48, 13);
             this.label4.TabIndex = 18;
             this.label4.Text = "Status:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 98);
-            this.label3.MaximumSize = new System.Drawing.Size(275, 0);
+            this.label3.Location = new System.Drawing.Point(8, 71);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.MaximumSize = new System.Drawing.Size(206, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(274, 85);
+            this.label3.Size = new System.Drawing.Size(202, 78);
             this.label3.TabIndex = 17;
             this.label3.Text = "Here you can install or uninstall the HTTPs certificate. Remember that you need t" +
     "o install it only once and you can keep it installed even while you\'re playing o" +
@@ -615,11 +644,10 @@
             this.certificateButton.Customization = "KSkp/zMzM/8zMzP/KSkp//////////8MGRkZ/w==";
             this.certificateButton.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Italic);
             this.certificateButton.Image = null;
-            this.certificateButton.Location = new System.Drawing.Point(7, 59);
-            this.certificateButton.Margin = new System.Windows.Forms.Padding(4);
+            this.certificateButton.Location = new System.Drawing.Point(5, 43);
             this.certificateButton.Name = "certificateButton";
             this.certificateButton.NoRounding = false;
-            this.certificateButton.Size = new System.Drawing.Size(277, 31);
+            this.certificateButton.Size = new System.Drawing.Size(208, 25);
             this.certificateButton.TabIndex = 13;
             this.certificateButton.Text = "...";
             this.certificateButton.Transparent = false;
@@ -630,9 +658,11 @@
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.currentDomains);
             this.groupBox2.ForeColor = System.Drawing.Color.Silver;
-            this.groupBox2.Location = new System.Drawing.Point(12, 43);
+            this.groupBox2.Location = new System.Drawing.Point(9, 35);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(291, 193);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox2.Size = new System.Drawing.Size(258, 157);
             this.groupBox2.TabIndex = 18;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Current redirections";
@@ -640,10 +670,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 108);
-            this.label1.MaximumSize = new System.Drawing.Size(275, 0);
+            this.label1.Location = new System.Drawing.Point(18, 98);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.MaximumSize = new System.Drawing.Size(235, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(273, 68);
+            this.label1.Size = new System.Drawing.Size(223, 52);
             this.label1.TabIndex = 16;
             this.label1.Text = "These redirections will be applied to your hosts file when switching to Ripple. T" +
     "hey\'re always up to date and fetched from ip.ripple.moe";
@@ -656,10 +687,11 @@
             this.currentDomains.Font = new System.Drawing.Font("Courier New", 8F);
             this.currentDomains.ForeColor = System.Drawing.Color.White;
             this.currentDomains.FormattingEnabled = true;
-            this.currentDomains.ItemHeight = 16;
-            this.currentDomains.Location = new System.Drawing.Point(9, 23);
+            this.currentDomains.ItemHeight = 14;
+            this.currentDomains.Location = new System.Drawing.Point(7, 19);
+            this.currentDomains.Margin = new System.Windows.Forms.Padding(2);
             this.currentDomains.Name = "currentDomains";
-            this.currentDomains.Size = new System.Drawing.Size(276, 82);
+            this.currentDomains.Size = new System.Drawing.Size(247, 72);
             this.currentDomains.TabIndex = 15;
             // 
             // groupBox1
@@ -667,9 +699,11 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.fallbackDomains);
             this.groupBox1.ForeColor = System.Drawing.Color.Silver;
-            this.groupBox1.Location = new System.Drawing.Point(12, 242);
+            this.groupBox1.Location = new System.Drawing.Point(9, 197);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(291, 221);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Size = new System.Drawing.Size(258, 180);
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Fallback redirections";
@@ -677,10 +711,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(17, 108);
-            this.label2.MaximumSize = new System.Drawing.Size(275, 0);
+            this.label2.Location = new System.Drawing.Point(14, 121);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.MaximumSize = new System.Drawing.Size(235, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(258, 68);
+            this.label2.Size = new System.Drawing.Size(232, 52);
             this.label2.TabIndex = 17;
             this.label2.Text = "These redirections will be applied to your hosts file when switching to Ripple if" +
     " our remote redirections endpoint  goes offline.";
@@ -693,20 +728,22 @@
             this.fallbackDomains.Font = new System.Drawing.Font("Courier New", 8F);
             this.fallbackDomains.ForeColor = System.Drawing.Color.White;
             this.fallbackDomains.FormattingEnabled = true;
-            this.fallbackDomains.ItemHeight = 16;
-            this.fallbackDomains.Location = new System.Drawing.Point(6, 23);
+            this.fallbackDomains.ItemHeight = 14;
+            this.fallbackDomains.Location = new System.Drawing.Point(4, 19);
+            this.fallbackDomains.Margin = new System.Windows.Forms.Padding(2);
             this.fallbackDomains.Name = "fallbackDomains";
-            this.fallbackDomains.Size = new System.Drawing.Size(276, 82);
+            this.fallbackDomains.Size = new System.Drawing.Size(250, 100);
             this.fallbackDomains.TabIndex = 16;
             // 
             // SettingsForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(909, 500);
+            this.ClientSize = new System.Drawing.Size(719, 406);
             this.Controls.Add(this.genuineTheme1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "SettingsForm";
             this.Text = "SettingsForm";
             this.TransparencyKey = System.Drawing.Color.Fuchsia;
