@@ -26,11 +26,18 @@ namespace RippleServerSwitcher
 
         private void certificateButton_Click(object sender, EventArgs e)
         {
-            if (Program.Switcher.CertificateManager.IsCertificateInstalled())
-                Program.Switcher.CertificateManager.RemoveCertificates();
-            else
-                Program.Switcher.CertificateManager.InstallCertificate();
-            updateCertificateStatus();
+            try
+            {
+                if (Program.Switcher.CertificateManager.IsCertificateInstalled())
+                    Program.Switcher.CertificateManager.RemoveCertificates();
+                else
+                    Program.Switcher.CertificateManager.InstallCertificate();
+                updateCertificateStatus();
+            }
+            catch (HumanReadableException exc)
+            {
+                MessageBox.Show(exc.AdditionalInfo, exc.UIMessage, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void updateErrorReportCheckbox() => errorReportCheckbox.Checked = Program.Switcher.Settings.ReportCrashStatus != ReportCrashStatus.NO;
