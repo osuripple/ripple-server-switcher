@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Ripple Haute Patisserie Co., Ltd.")]
 [assembly: AssemblyProduct("RippleServerSwitcher")]
-[assembly: AssemblyCopyright("© 2015-2018 Ripple")]
+[assembly: AssemblyCopyright("© 2015-2019 Ripple")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // È possibile specificare tutti i valori oppure impostare valori predefiniti per i numeri relativi alla revisione e alla build 
 // usando l'asterisco '*' come illustrato di seguito:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2.0.2.0")]
-[assembly: AssemblyFileVersion("2.0.2.0")]
+[assembly: AssemblyVersion("2.0.2.1")]
+[assembly: AssemblyFileVersion("2.0.2.1")]
