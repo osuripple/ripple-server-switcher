@@ -1,0 +1,8 @@
+﻿<#@ template language="C#" #>
+namespace RippleServerSwitcher
+{
+    public class Meta
+    {
+        public const string Year = "<#= DateTime.Now.Year #>";
+    }
+}

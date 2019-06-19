@@ -46,7 +46,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutForm));
             this.genuineTheme1 = new GenuineTheme();
             this.closeButton = new GenuineButton();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.aboutText = new System.Windows.Forms.TextBox();
             this.versionLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -84,7 +84,7 @@
         bloom7,
         bloom8};
             this.genuineTheme1.Controls.Add(this.closeButton);
-            this.genuineTheme1.Controls.Add(this.textBox1);
+            this.genuineTheme1.Controls.Add(this.aboutText);
             this.genuineTheme1.Controls.Add(this.versionLabel);
             this.genuineTheme1.Controls.Add(this.label1);
             this.genuineTheme1.Controls.Add(this.pictureBox1);
@@ -93,11 +93,12 @@
             this.genuineTheme1.Font = new System.Drawing.Font("Verdana", 8F);
             this.genuineTheme1.Image = null;
             this.genuineTheme1.Location = new System.Drawing.Point(0, 0);
+            this.genuineTheme1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.genuineTheme1.Movable = true;
             this.genuineTheme1.Name = "genuineTheme1";
             this.genuineTheme1.NoRounding = false;
             this.genuineTheme1.Sizable = false;
-            this.genuineTheme1.Size = new System.Drawing.Size(388, 214);
+            this.genuineTheme1.Size = new System.Drawing.Size(291, 174);
             this.genuineTheme1.SmartBounds = true;
             this.genuineTheme1.TabIndex = 0;
             this.genuineTheme1.Text = "About";
@@ -130,38 +131,37 @@
             this.closeButton.Customization = "KSkp/zMzM/8zMzP/KSkp//////////8MGRkZ/w==";
             this.closeButton.Font = new System.Drawing.Font("Verdana", 8F);
             this.closeButton.Image = null;
-            this.closeButton.Location = new System.Drawing.Point(355, 4);
-            this.closeButton.Margin = new System.Windows.Forms.Padding(4);
+            this.closeButton.Location = new System.Drawing.Point(266, 3);
             this.closeButton.Name = "closeButton";
             this.closeButton.NoRounding = false;
-            this.closeButton.Size = new System.Drawing.Size(29, 21);
+            this.closeButton.Size = new System.Drawing.Size(22, 17);
             this.closeButton.TabIndex = 3;
             this.closeButton.Text = "x";
             this.closeButton.Transparent = false;
             this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
             // 
-            // textBox1
+            // aboutText
             // 
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.ForeColor = System.Drawing.Color.White;
-            this.textBox1.Location = new System.Drawing.Point(11, 75);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(364, 128);
-            this.textBox1.TabIndex = 4;
-            this.textBox1.Text = resources.GetString("textBox1.Text");
+            this.aboutText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
+            this.aboutText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.aboutText.ForeColor = System.Drawing.Color.White;
+            this.aboutText.Location = new System.Drawing.Point(8, 61);
+            this.aboutText.Multiline = true;
+            this.aboutText.Name = "aboutText";
+            this.aboutText.ReadOnly = true;
+            this.aboutText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.aboutText.Size = new System.Drawing.Size(274, 104);
+            this.aboutText.TabIndex = 4;
+            this.aboutText.Text = resources.GetString("aboutText.Text");
             // 
             // versionLabel
             // 
             this.versionLabel.AutoSize = true;
             this.versionLabel.ForeColor = System.Drawing.Color.DarkGray;
-            this.versionLabel.Location = new System.Drawing.Point(53, 54);
+            this.versionLabel.Location = new System.Drawing.Point(40, 44);
+            this.versionLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.versionLabel.Name = "versionLabel";
-            this.versionLabel.Size = new System.Drawing.Size(23, 17);
+            this.versionLabel.Size = new System.Drawing.Size(19, 13);
             this.versionLabel.TabIndex = 3;
             this.versionLabel.Text = "...";
             // 
@@ -170,29 +170,32 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(53, 37);
+            this.label1.Location = new System.Drawing.Point(40, 30);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(185, 17);
+            this.label1.Size = new System.Drawing.Size(155, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "Ripple Server Switcher";
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(11, 37);
+            this.pictureBox1.Location = new System.Drawing.Point(8, 30);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(36, 34);
+            this.pictureBox1.Size = new System.Drawing.Size(27, 28);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
             // AboutForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(388, 214);
+            this.ClientSize = new System.Drawing.Size(291, 174);
             this.Controls.Add(this.genuineTheme1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "AboutForm";
             this.Text = "About";
             this.TransparencyKey = System.Drawing.Color.Fuchsia;
@@ -209,7 +212,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label versionLabel;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox aboutText;
         private GenuineButton closeButton;
     }
 }
