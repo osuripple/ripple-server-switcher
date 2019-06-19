@@ -6,20 +6,30 @@ using System.Security.Principal;
 using System.Diagnostics;
 using System.IO;
 using System.ComponentModel;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace RippleServerSwitcher
 {
     public partial class MainForm : Form
     {
         private string _bottomText = "";
-        private string bottomText {
+        private string bottomText
+        {
             get { return _bottomText; }
-            set {
+            set
+            {
                 bool hasError = bottomErrorText.Length > 0;
                 if (value.Length > 0 || hasError)
+                {
+                    bottomIconsPanel.Hide();
                     bottomStatusPanel.Show();
+                }
                 else
+                {
+                    bottomIconsPanel.Show();
                     bottomStatusPanel.Hide();
+                }
                 if (hasError)
                 {
                     new ToolTip().SetToolTip(this.bottomStatusLabel, value);
@@ -27,13 +37,46 @@ namespace RippleServerSwitcher
                 }
                 else
                     bottomStatusPicture.Image = Resources.Loading;
-                
+
                 _bottomText = value;
                 bottomStatusLabel.Text = hasError ? bottomErrorText : bottomText;
             }
         }
+        private Color emergencyMessagePanelBaseColor = Color.FromArgb(54, 14, 16);
+        private string iconInfoText
+        {
+            get { return iconInfoLabel.Text; }
+            set { iconInfoLabel.Text = value; }
+        }
+        private EmergencyMessage _emergencyMessage = new EmptyEmergencyMessage();
+        private EmergencyMessage emergencyMessage
+        {
+            get { return _emergencyMessage; }
+            set
+            {
+                _emergencyMessage = value ?? new EmptyEmergencyMessage();
+                if (emergencyMessage.Empty)
+                {
+                    if (bottomPanel.Visible)
+                    {
+                        bottomPanel.Hide();
+                        Height -= bottomPanel.Height;
+                    }
+                }
+                else
+                {
+                    messageLabel.Text = String.Format("{0}{1}", emergencyMessage.Message.Substring(0, Math.Min(32, emergencyMessage.Message.Length)), emergencyMessage.Message.Length > 32 ? "..." : "");
+                    if (!bottomPanel.Visible)
+                    {
+                        Height += bottomPanel.Height;
+                        bottomPanel.Show();
+                    }
+                }
+            }
+        }
         private string _bottomErrorText = "";
-        private string bottomErrorText {
+        private string bottomErrorText
+        {
             get { return _bottomErrorText; }
             set
             {
@@ -44,7 +87,8 @@ namespace RippleServerSwitcher
         }
         private Switcher switcher = Program.Switcher;
         private Exception _latestException;
-        private Exception latestException {
+        private Exception latestException
+        {
             get { return _latestException; }
             set
             {
@@ -55,10 +99,32 @@ namespace RippleServerSwitcher
             }
         }
 
+        private bool _servicesUp = true;
+        private bool servicesUp
+        {
+            get { return _servicesUp; }
+            set
+            {
+                _servicesUp = value;
+                serverStatusIcon.Image = servicesUp ? Resources.Game : Resources.Warning;
+                if (!servicesUp && emergencyMessage.Empty)
+                {
+                    emergencyMessage = new EmergencyMessage {
+                        Type = EmergencyMessageType.Warning,
+                        Title = "Services down!",
+                        Message = "Some services are experiencing issues. Please check the status page at https://status.ripple.moe for more information."
+                    };
+                }
+            }
+        }
+
         public MainForm()
         {
             InitializeComponent();
-            
+            bottomPanel.BackColor = emergencyMessagePanelBaseColor;
+            foreach (Control childControl in bottomPanel.Controls)
+                childControl.Click += BottomPanel_Click;
+
             new ToolTip().SetToolTip(this.switchButton, "Switch between osu! and ripple");
         }
 
@@ -84,6 +150,8 @@ namespace RippleServerSwitcher
 
             try
             {
+                bottomIconsPanel.Hide();
+
                 bottomText = "Fetching servers IPs...";
                 updateStatus();
 
@@ -128,7 +196,6 @@ namespace RippleServerSwitcher
                         if (result == DialogResult.Yes)
                             new UpdaterForm().ShowDialog();
                     }
-                    bottomText = "";
                 }
                 catch
                 {
@@ -137,6 +204,24 @@ namespace RippleServerSwitcher
 
                 inspectButton.Enabled = true;
                 updateStatus();
+
+                bottomText = "Fetching messages...";
+                emergencyMessage = await Pipoli.FetchEmergencyMessage();
+
+                bottomText = "Checking server status...";
+                var statusDict = await Pipoli.FetchServicesStatus();
+                bool allUp = true;
+                foreach (KeyValuePair<string, ServiceStatus> entry in statusDict)
+                {
+                    if (!entry.Value.Up && !entry.Value.Secondary)
+                    {
+                        allUp = false;
+                        break;
+                    }
+                }
+
+                servicesUp = allUp;
+                bottomText = "";
             }
             catch (Exception ex)
             {
@@ -196,7 +281,7 @@ namespace RippleServerSwitcher
                 Clipboard.SetText(s);
                 s += "\n\n(Exception copied to clipboard)";
             }
-                
+
             MessageBox.Show(s);
         }
 
@@ -205,13 +290,10 @@ namespace RippleServerSwitcher
             await switcher.Settings.Save();
             Application.Exit();
         }
-        
+
         private void aboutButton_Click(object sender, EventArgs e) => new AboutForm().ShowDialog();
 
-        private void inspectButton_click(object sender, EventArgs e)
-        {
-            new SettingsForm().ShowDialog();
-        }
+        private void inspectButton_click(object sender, EventArgs e) => new SettingsForm().ShowDialog();
 
         private void updateUpdateUnpacker()
         {
@@ -241,5 +323,22 @@ namespace RippleServerSwitcher
                 throw new HumanReadableException("Cannot replace updater", "Unhautorized access. Maybe UpdateUnpacker.exe is in read only mode?");
             }
         }
+
+        private void DiscordIcon_MouseEnter(object sender, EventArgs e) => iconInfoText = "Discord Server.";
+        private void DiscordIcon_Click(object sender, EventArgs e) => Process.Start("https://discord.ripple.moe");
+
+        private void ServerStatusIcon_MouseEnter(object sender, EventArgs e) => iconInfoText = servicesUp ? "Server status. Everything is up!" : "Servers currently offline!";
+
+        private void BottomPanel_Paint(object sender, PaintEventArgs e) => ControlPaint.DrawBorder(e.Graphics, bottomPanel.ClientRectangle, Color.FromArgb(74, 38, 39), ButtonBorderStyle.Solid);
+        private void BottomPanel_MouseEnter(object sender, EventArgs e) => bottomPanel.BackColor = ControlPaint.Light(emergencyMessagePanelBaseColor);
+        private void BottomPanel_MouseLeave(object sender, EventArgs e)
+        {
+            if (bottomPanel.ClientRectangle.Contains(bottomPanel.PointToClient(MousePosition)))
+                return;
+            bottomPanel.BackColor = emergencyMessagePanelBaseColor;
+        }
+        private void BottomPanel_Click(object sender, EventArgs e) => MessageBox.Show(emergencyMessage.Message, emergencyMessage.Title, MessageBoxButtons.OK, emergencyMessage.Type == EmergencyMessageType.Warning ? MessageBoxIcon.Warning : MessageBoxIcon.None);
+
+        private void ServerStatusIcon_Click(object sender, EventArgs e) => Process.Start("https://status.ripple.moe");
     }
 }

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Costura.Fody.3.3.3\build\Costura.Fody.props" Condition="Exists('..\packages\Costura.Fody.3.3.3\build\Costura.Fody.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -162,6 +162,7 @@
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SettingsManager.cs" />
+    <Compile Include="StatusData.cs" />
     <Compile Include="Switcher.cs" />
     <Compile Include="Theme.cs">
       <SubType>Component</SubType>
@@ -221,6 +222,8 @@
   <ItemGroup>
     <None Include="Resources\warning.png" />
     <None Include="Resources\loading.gif" />
+    <None Include="Resources\discord-icon.png" />
+    <None Include="Resources\up.png" />
     <Content Include="ripple-server-switcher-icon.ico" />
   </ItemGroup>
   <ItemGroup>
