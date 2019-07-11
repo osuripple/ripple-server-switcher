@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
@@ -78,11 +78,25 @@ namespace RippleServerSwitcher
             {
                 store.Open(OpenFlags.ReadWrite);
                 foreach (X509Certificate2 c in FindRippleCertificates(store))
-                    store.Remove(c);
-            }
-            catch (CryptographicException)
-            {
-                throw new HumanReadableException("Removal halted by user.", "The certificate was not uninstalled because the user denied its removal.");
+                {
+                    try
+                    {
+                        store.Remove(c);
+                    }
+                    catch (CryptographicException)
+                    {
+                        string serialNumber;
+                        try
+                        {
+                            serialNumber = c.GetSerialNumberString();
+                        }
+                        catch
+                        {
+                            serialNumber = "unknown";
+                        }
+                        throw new HumanReadableException("Cannot remove.", $"The certificate with serial number '{serialNumber}' was not uninstalled because the user denied its removal or the access was denied (non-locally installed cert).");
+                    }
+                }
             }
             finally
             {
