@@ -10,7 +10,9 @@ namespace RippleServerSwitcher
     public class Pipoli
     {
         private static readonly HttpClient httpClient = new HttpClient();
-        private const string endpoint = "https://status.ripple.moe/backend/status_data.php";
+        private const string apiBase = "https://status.ripple.moe/backend";
+        private static string endpoint = $"{apiBase}/status_data.php";
+        private static string emergencyMessageEndpoint = $"{apiBase}/emergency_message.php";
 
         public static async Task<Dictionary<string, ServiceStatus>> FetchServicesStatus()
         {
@@ -22,7 +24,7 @@ namespace RippleServerSwitcher
         }
         public static async Task<EmergencyMessage> FetchEmergencyMessage()
         {
-            using (var result = await httpClient.GetAsync(endpoint))
+            using (var result = await httpClient.GetAsync(emergencyMessageEndpoint))
             {
                 string content = await result.Content.ReadAsStringAsync();
                 return JsonConvert.DeserializeObject<EmergencyMessage>(content);
