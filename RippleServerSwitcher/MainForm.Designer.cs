@@ -46,7 +46,6 @@ namespace RippleServerSwitcher
             Bloom bloom6 = new Bloom();
             Bloom bloom7 = new Bloom();
             Bloom bloom8 = new Bloom();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             Bloom bloom9 = new Bloom();
             Bloom bloom10 = new Bloom();
             Bloom bloom11 = new Bloom();
@@ -75,9 +74,10 @@ namespace RippleServerSwitcher
             Bloom bloom34 = new Bloom();
             Bloom bloom35 = new Bloom();
             Bloom bloom36 = new Bloom();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.genuineTheme1 = new GenuineTheme();
             this.bottomPanel = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.messageIcon = new System.Windows.Forms.PictureBox();
             this.messageLabel = new System.Windows.Forms.Label();
             this.bottomIconsPanel = new System.Windows.Forms.Panel();
             this.iconInfoLabel = new System.Windows.Forms.Label();
@@ -93,7 +93,7 @@ namespace RippleServerSwitcher
             this.closeButton = new GenuineButton();
             this.genuineTheme1.SuspendLayout();
             this.bottomPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.messageIcon)).BeginInit();
             this.bottomIconsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.serverStatusIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.discordIcon)).BeginInit();
@@ -147,7 +147,7 @@ namespace RippleServerSwitcher
             this.genuineTheme1.Name = "genuineTheme1";
             this.genuineTheme1.NoRounding = false;
             this.genuineTheme1.Sizable = false;
-            this.genuineTheme1.Size = new System.Drawing.Size(272, 142);
+            this.genuineTheme1.Size = new System.Drawing.Size(272, 149);
             this.genuineTheme1.SmartBounds = true;
             this.genuineTheme1.TabIndex = 0;
             this.genuineTheme1.Text = "Ripple Server Switcher";
@@ -156,10 +156,10 @@ namespace RippleServerSwitcher
             // bottomPanel
             // 
             this.bottomPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(14)))), ((int)(((byte)(16)))));
-            this.bottomPanel.Controls.Add(this.pictureBox1);
+            this.bottomPanel.Controls.Add(this.messageIcon);
             this.bottomPanel.Controls.Add(this.messageLabel);
             this.bottomPanel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bottomPanel.Location = new System.Drawing.Point(3, 139);
+            this.bottomPanel.Location = new System.Drawing.Point(3, 145);
             this.bottomPanel.Name = "bottomPanel";
             this.bottomPanel.Size = new System.Drawing.Size(266, 24);
             this.bottomPanel.TabIndex = 17;
@@ -169,14 +169,14 @@ namespace RippleServerSwitcher
             this.bottomPanel.MouseEnter += new System.EventHandler(this.BottomPanel_MouseEnter);
             this.bottomPanel.MouseLeave += new System.EventHandler(this.BottomPanel_MouseLeave);
             // 
-            // pictureBox1
+            // messageIcon
             // 
-            this.pictureBox1.Image = global::RippleServerSwitcher.Properties.Resources.Warning;
-            this.pictureBox1.Location = new System.Drawing.Point(7, 4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(18, 17);
-            this.pictureBox1.TabIndex = 16;
-            this.pictureBox1.TabStop = false;
+            this.messageIcon.Image = global::RippleServerSwitcher.Properties.Resources.Warning;
+            this.messageIcon.Location = new System.Drawing.Point(7, 4);
+            this.messageIcon.Name = "messageIcon";
+            this.messageIcon.Size = new System.Drawing.Size(18, 17);
+            this.messageIcon.TabIndex = 16;
+            this.messageIcon.TabStop = false;
             // 
             // messageLabel
             // 
@@ -202,7 +202,7 @@ namespace RippleServerSwitcher
             // 
             this.iconInfoLabel.AutoSize = true;
             this.iconInfoLabel.ForeColor = System.Drawing.Color.Silver;
-            this.iconInfoLabel.Location = new System.Drawing.Point(2, 6);
+            this.iconInfoLabel.Location = new System.Drawing.Point(-2, 6);
             this.iconInfoLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.iconInfoLabel.Name = "iconInfoLabel";
             this.iconInfoLabel.Size = new System.Drawing.Size(0, 13);
@@ -218,10 +218,11 @@ namespace RippleServerSwitcher
             this.serverStatusIcon.TabStop = false;
             this.serverStatusIcon.Click += new System.EventHandler(this.ServerStatusIcon_Click);
             this.serverStatusIcon.MouseEnter += new System.EventHandler(this.ServerStatusIcon_MouseEnter);
+            this.serverStatusIcon.MouseLeave += new System.EventHandler(this.bottomIconReset);
             // 
             // discordIcon
             // 
-            this.discordIcon.Image = ((System.Drawing.Image)(resources.GetObject("discordIcon.Image")));
+            this.discordIcon.Image = global::RippleServerSwitcher.Properties.Resources.Discord;
             this.discordIcon.Location = new System.Drawing.Point(223, 4);
             this.discordIcon.Name = "discordIcon";
             this.discordIcon.Size = new System.Drawing.Size(18, 17);
@@ -229,6 +230,7 @@ namespace RippleServerSwitcher
             this.discordIcon.TabStop = false;
             this.discordIcon.Click += new System.EventHandler(this.DiscordIcon_Click);
             this.discordIcon.MouseEnter += new System.EventHandler(this.DiscordIcon_MouseEnter);
+            this.discordIcon.MouseLeave += new System.EventHandler(this.bottomIconReset);
             // 
             // inspectButton
             // 
@@ -420,7 +422,7 @@ namespace RippleServerSwitcher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(272, 142);
+            this.ClientSize = new System.Drawing.Size(272, 149);
             this.Controls.Add(this.genuineTheme1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -431,7 +433,7 @@ namespace RippleServerSwitcher
             this.genuineTheme1.ResumeLayout(false);
             this.bottomPanel.ResumeLayout(false);
             this.bottomPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.messageIcon)).EndInit();
             this.bottomIconsPanel.ResumeLayout(false);
             this.bottomIconsPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.serverStatusIcon)).EndInit();
@@ -460,7 +462,7 @@ namespace RippleServerSwitcher
         private Label iconInfoLabel;
         private Panel bottomPanel;
         private Label messageLabel;
-        private PictureBox pictureBox1;
+        private PictureBox messageIcon;
     }
 }
 

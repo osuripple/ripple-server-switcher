@@ -32,11 +32,14 @@ namespace RippleServerSwitcher
                     Program.Switcher.CertificateManager.RemoveCertificates();
                 else
                     Program.Switcher.CertificateManager.InstallCertificate();
-                updateCertificateStatus();
             }
             catch (HumanReadableException exc)
             {
                 MessageBox.Show(exc.AdditionalInfo, exc.UIMessage, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                updateCertificateStatus();
             }
         }
 

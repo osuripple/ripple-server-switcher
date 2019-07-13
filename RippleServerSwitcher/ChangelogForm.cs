@@ -6,8 +6,21 @@ namespace RippleServerSwitcher
 {
     public partial class ChangelogForm : Form
     {
-        private readonly Dictionary<string, string[]> entries = new Dictionary<string, string[]>
+        private static readonly string[] defaultChangelog = new string[] { "Bugfixes and improvements" };
+        private static string defaultChangelogEntry { get => defaultChangelog[0]; }
+        private static Dictionary<string, string[]> entries = new Dictionary<string, string[]>
         {
+            {
+                "v2.1.0.0",
+                new string[]
+                {
+                    "Add server status link",
+                    "Add discord server link",
+                    "Add server status check",
+                    "Add emergency message support",
+                    defaultChangelogEntry,
+                }
+            },
             { "v2.0.2.1", null },
             {
                 "v2.0.2.0",
@@ -75,8 +88,6 @@ namespace RippleServerSwitcher
                 }
             }
         };
-        private readonly string[] defaultChangelog = new string[] { "Bugfixes and improvements" };
-        private string defaultChangelogEntry { get => defaultChangelog[0]; }
 
         public ChangelogForm() => InitializeComponent();
         private void closeButton_Click(object sender, EventArgs e) => Close();

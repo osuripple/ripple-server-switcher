@@ -42,7 +42,16 @@ namespace RippleServerSwitcher
                 bottomStatusLabel.Text = hasError ? bottomErrorText : bottomText;
             }
         }
-        private Color emergencyMessagePanelBaseColor = Color.FromArgb(54, 14, 16);
+        private Color emergencyMessagePanelBaseColor
+        {
+            get => emergencyMessage.Type == EmergencyMessageType.Warning ? Color.FromArgb(54, 14, 16) : Color.FromArgb(19, 78, 125);
+        }
+
+        private Color emergencyMessagePanelBorderColor
+        {
+            get => emergencyMessage.Type == EmergencyMessageType.Warning ? Color.FromArgb(74, 38, 39) : Color.FromArgb(12, 48, 80);
+        }
+
         private string iconInfoText
         {
             get { return iconInfoLabel.Text; }
@@ -60,15 +69,16 @@ namespace RippleServerSwitcher
                     if (bottomPanel.Visible)
                     {
                         bottomPanel.Hide();
-                        Height -= bottomPanel.Height;
+                        Height -= bottomPanel.Height - (Height - bottomPanel.Location.Y) + 3;
                     }
                 }
                 else
                 {
                     messageLabel.Text = String.Format("{0}{1}", emergencyMessage.Message.Substring(0, Math.Min(32, emergencyMessage.Message.Length)), emergencyMessage.Message.Length > 32 ? "..." : "");
+                    messageIcon.Image = emergencyMessage.Type == EmergencyMessageType.Warning ? Resources.Warning : Resources.Info;
                     if (!bottomPanel.Visible)
                     {
-                        Height += bottomPanel.Height;
+                        Height += bottomPanel.Height - (Height - bottomPanel.Location.Y) + 3;
                         bottomPanel.Show();
                     }
                 }
@@ -324,12 +334,22 @@ namespace RippleServerSwitcher
             }
         }
 
-        private void DiscordIcon_MouseEnter(object sender, EventArgs e) => iconInfoText = "Discord Server.";
+        private void bottomIconHover(string s)
+        {
+            iconInfoText = s;
+            Cursor = Cursors.Hand;
+        }
+
+        private void DiscordIcon_MouseEnter(object sender, EventArgs e) => bottomIconHover("Discord Server.");
         private void DiscordIcon_Click(object sender, EventArgs e) => Process.Start("https://discord.ripple.moe");
-
-        private void ServerStatusIcon_MouseEnter(object sender, EventArgs e) => iconInfoText = servicesUp ? "Server status. Everything is up!" : "Servers currently offline!";
-
-        private void BottomPanel_Paint(object sender, PaintEventArgs e) => ControlPaint.DrawBorder(e.Graphics, bottomPanel.ClientRectangle, Color.FromArgb(74, 38, 39), ButtonBorderStyle.Solid);
+        private void ServerStatusIcon_MouseEnter(object sender, EventArgs e) => bottomIconHover(servicesUp ? "Server status. Everything is up!" : "Servers currently offline!");
+        private void ServerStatusIcon_Click(object sender, EventArgs e) => Process.Start("https://status.ripple.moe");
+        private void bottomIconReset(object sender, EventArgs e)
+        {
+            iconInfoText = "";
+            Cursor = Cursors.Default;
+        }
+        private void BottomPanel_Paint(object sender, PaintEventArgs e) => ControlPaint.DrawBorder(e.Graphics, bottomPanel.ClientRectangle, emergencyMessagePanelBorderColor, ButtonBorderStyle.Solid);
         private void BottomPanel_MouseEnter(object sender, EventArgs e) => bottomPanel.BackColor = ControlPaint.Light(emergencyMessagePanelBaseColor);
         private void BottomPanel_MouseLeave(object sender, EventArgs e)
         {
@@ -338,7 +358,5 @@ namespace RippleServerSwitcher
             bottomPanel.BackColor = emergencyMessagePanelBaseColor;
         }
         private void BottomPanel_Click(object sender, EventArgs e) => MessageBox.Show(emergencyMessage.Message, emergencyMessage.Title, MessageBoxButtons.OK, emergencyMessage.Type == EmergencyMessageType.Warning ? MessageBoxIcon.Warning : MessageBoxIcon.None);
-
-        private void ServerStatusIcon_Click(object sender, EventArgs e) => Process.Start("https://status.ripple.moe");
     }
 }
