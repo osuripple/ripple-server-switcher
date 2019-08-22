@@ -24,7 +24,18 @@ namespace RippleServerSwitcher
         public async Task Save()
         {
             Directory.CreateDirectory(SettingsManager.Folder);
-            using(StreamWriter writer = new StreamWriter(SettingsManager.FilePath))
+
+            // Ensure "read only" is off before saving
+            if (File.Exists(SettingsManager.FilePath))
+            {
+                FileAttributes attributes = File.GetAttributes(SettingsManager.FilePath);
+                if ((attributes & FileAttributes.ReadOnly) == FileAttributes.ReadOnly)
+                {
+                    File.SetAttributes(SettingsManager.FilePath, attributes & ~FileAttributes.ReadOnly);
+                }
+            }
+
+            using (StreamWriter writer = new StreamWriter(SettingsManager.FilePath))
                 await writer.WriteAsync(JsonConvert.SerializeObject(this));
         }
     }
