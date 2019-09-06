@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using RippleServerSwitcher.Properties;
-using SharpRaven;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,7 +48,6 @@ namespace RippleServerSwitcher
         public List<HostsEntry> RippleHostsEntries = new List<HostsEntry>();
         public CertificateManager CertificateManager = new CertificateManager { Certificate = new X509Certificate2(Resources.Certificate) };
         public Settings Settings = null;
-        public RavenClient RavenClient = new RavenClient(Program.SentryDSN);
         public Updater Updater = new Updater();
 
         public async Task Initialize()

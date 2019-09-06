@@ -7,6 +7,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SharpRaven;
 
 namespace RippleServerSwitcher
 {
@@ -16,7 +17,8 @@ namespace RippleServerSwitcher
 
         public static readonly string Version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
         public static readonly int VersionNumber = Convert.ToInt32(Version.Replace(".", string.Empty));
-        public const string SentryDSN = "https://ca538e69c0bc48658e58c7227383a3aa@pew.nyodev.xyz/21";
+        private const string sentryDSN = "https://ca538e69c0bc48658e58c7227383a3aa@pew.nyodev.xyz/21";
+        public static RavenClient RavenClient = new RavenClient(sentryDSN);
         public static Switcher Switcher = new Switcher();
         
         public static bool ReportExceptions
@@ -43,7 +45,7 @@ namespace RippleServerSwitcher
             AppDomain.CurrentDomain.UnhandledException += (sender, args) =>
             {
                 if (ReportExceptions)
-                    Switcher.RavenClient.Capture(new SharpRaven.Data.SentryEvent((Exception)args.ExceptionObject));
+                    RavenClient.Capture(new SharpRaven.Data.SentryEvent((Exception)args.ExceptionObject));
                 MessageBox.Show("Unhandled exception: " + args.ExceptionObject + "\n\n" + (ReportExceptions ? "The error has been reported to Ripple." : "Please report the error to Ripple."), "Oh no!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Environment.Exit(1);
             };

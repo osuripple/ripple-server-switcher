@@ -103,7 +103,7 @@ namespace RippleServerSwitcher
             set
             {
                 if (!(value is HumanReadableException) && switcher.Settings.ReportCrashStatus != ReportCrashStatus.NO)
-                    switcher.RavenClient.Capture(new SharpRaven.Data.SentryEvent(value));
+                    Program.RavenClient.Capture(new SharpRaven.Data.SentryEvent(value));
                 bottomErrorText = value is HumanReadableException ? ((HumanReadableException)value).UIMessage : "An unhandled exception has occurred.";
                 _latestException = value;
             }
