@@ -18,6 +18,21 @@ namespace RippleServerSwitcher
         public static readonly int VersionNumber = Convert.ToInt32(Version.Replace(".", string.Empty));
         public const string SentryDSN = "https://ca538e69c0bc48658e58c7227383a3aa@pew.nyodev.xyz/21";
         public static Switcher Switcher = new Switcher();
+        
+        public static bool ReportExceptions
+        {
+            get
+            {
+                try
+                {
+                    return Switcher.Settings.ReportCrashStatus != ReportCrashStatus.NO;
+                }
+                catch
+                {
+                    return true;
+                }
+            }
+        }
 
         /// <summary>
         /// Punto di ingresso principale dell'applicazione.
@@ -27,18 +42,9 @@ namespace RippleServerSwitcher
         {
             AppDomain.CurrentDomain.UnhandledException += (sender, args) =>
             {
-                bool report;
-                try
-                {
-                    report = Switcher.Settings.ReportCrashStatus != ReportCrashStatus.NO;
-                }
-                catch
-                {
-                    report = true;
-                }
-                if (report)
+                if (ReportExceptions)
                     Switcher.RavenClient.Capture(new SharpRaven.Data.SentryEvent((Exception)args.ExceptionObject));
-                MessageBox.Show("Unhandled exception: " + args.ExceptionObject + "\n\n" + (report ? "The error has been reported to Ripple." : "Please report the error to Ripple."), "Oh no!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Unhandled exception: " + args.ExceptionObject + "\n\n" + (ReportExceptions ? "The error has been reported to Ripple." : "Please report the error to Ripple."), "Oh no!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Environment.Exit(1);
             };
 
