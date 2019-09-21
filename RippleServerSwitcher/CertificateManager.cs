@@ -9,16 +9,9 @@ namespace RippleServerSwitcher
     {
         public string AuthoritySerialNumber
         {
-            get => Cert.GetSerialNumberString();
+            get => Certificate.GetSerialNumberString();
         }
-        public byte[] Certificate;
-        public X509Certificate2 Cert
-        {
-            get
-            {
-                return X509Certificate2(Certificate);
-            }
-        }
+        public X509Certificate2 Certificate;
 
         private X509Certificate2Collection FindRippleCertificates(X509Store store)
         {
@@ -51,7 +44,7 @@ namespace RippleServerSwitcher
 
                 try
                 {
-                    store.Add(Cert);
+                    store.Add(Certificate);
                 }
                 catch (CryptographicException)
                 {
