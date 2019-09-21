@@ -145,7 +145,11 @@ namespace RippleServerSwitcher
             catch (Exception ex)
             {
                 RippleHostsEntries = Settings.IPsBackup.Count > 0 ? Settings.IPsBackup : FallbackOfflineIPs.ToList();
-                throw new UpdateIPsFailedException(String.Format("Couldn't fetch IPs ({0}). Using fallback ones.", ex.Message));
+                if (!(ex is JsonReaderException))
+                {
+                    // Fail silently if we have a JsonReaderException (probably cloudflare)
+                    throw new UpdateIPsFailedException(String.Format("Couldn't fetch IPs ({0}). Using fallback ones.", ex.Message));
+                }
             }
 
             if (fromInternet)

@@ -207,6 +207,11 @@ namespace RippleServerSwitcher
                             new UpdaterForm().ShowDialog();
                     }
                 }
+                catch (JsonReaderException)
+                {
+                    // Probably cloudflare. Fail silently
+                    servicesUp = true;
+                }
                 catch
                 {
                     latestException = new HumanReadableException("Error while checking for updates.");
@@ -216,22 +221,47 @@ namespace RippleServerSwitcher
                 updateStatus();
 
                 bottomText = "Fetching messages...";
-                emergencyMessage = await Pipoli.FetchEmergencyMessage();
-
-                bottomText = "Checking server status...";
-                var statusDict = await Pipoli.FetchServicesStatus();
-                bool allUp = true;
-                foreach (KeyValuePair<string, ServiceStatus> entry in statusDict)
+                try
                 {
-                    if (!entry.Value.Up && !entry.Value.Secondary)
-                    {
-                        allUp = false;
-                        break;
-                    }
+                    emergencyMessage = await Pipoli.FetchEmergencyMessage();
+                }
+                catch (JsonReaderException)
+                {
+                    // Probably cloudflare. Fail silently
+                }
+                catch
+                {
+                    latestException = new HumanReadableException("Error while checking for emergency messages.");
                 }
 
-                servicesUp = allUp;
-                bottomText = "";
+                bottomText = "Checking server status...";
+                try
+                {
+                    var statusDict = await Pipoli.FetchServicesStatus();
+                    bool allUp = true;
+                    foreach (KeyValuePair<string, ServiceStatus> entry in statusDict)
+                    {
+                        if (!entry.Value.Up && !entry.Value.Secondary)
+                        {
+                            allUp = false;
+                            break;
+                        }
+                    }
+
+                    servicesUp = allUp;
+                    bottomText = "";
+                }
+                catch (JsonReaderException)
+                {
+                    // Probably cloudflare. Fail silently
+                    servicesUp = true;
+                    bottomText = "";
+                }
+                catch
+                {
+                    servicesUp = true;
+                    latestException = new HumanReadableException("Error while checking for server status.");
+                }
             }
             catch (Exception ex)
             {
