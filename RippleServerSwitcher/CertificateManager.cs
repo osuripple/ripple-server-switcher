@@ -20,7 +20,7 @@ namespace RippleServerSwitcher
             }
         }
 
-        private X509Certificate2Collection FindRippleCertificates(X509Certificate2 store)
+        private X509Certificate2Collection FindRippleCertificates(X509Store store)
         {
             // Too bad I can't subclass X509Store...
             return store.Certificates.Find(X509FindType.FindBySerialNumber, AuthoritySerialNumber, true);
