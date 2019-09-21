@@ -46,8 +46,9 @@ namespace RippleServerSwitcher
                 {
                     store.Add(Certificate);
                 }
-                catch (CryptographicException)
+                catch (CryptographicException e)
                 {
+                    Program.RavenClient.Capture(new SharpRaven.Data.SentryEvent(e));
                     throw new HumanReadableException(
                         "You must install the certificate.",
                         "The certificate is needed to connect to Ripple through HTTPs. Without it, you won't be able to connect. " +
