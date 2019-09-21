@@ -9,16 +9,14 @@ namespace RippleServerSwitcher
     {
         public string AuthoritySerialNumber
         {
-            get => Collection[0].GetSerialNumberString();
+            get => Cert.GetSerialNumberString();
         }
         public byte[] Certificate;
-        public X509Certificate2Collection Collection
+        public X509Certificate2 Cert
         {
             get
             {
-                X509Certificate2Collection collection = new X509Certificate2Collection();
-                collection.Import(Certificate);
-                return collection;
+                return X509Certificate2(Certificate);
             }
         }
 
@@ -51,19 +49,18 @@ namespace RippleServerSwitcher
                 if (FindRippleCertificates(store).Count > 0)
                     return;
 
-                foreach (X509Certificate2 cert in Collection)
-                    try
-                    {
-                        store.Add(cert);
-                    }
-                    catch (CryptographicException)
-                    {
-                        throw new HumanReadableException(
-                            "You must install the certificate.",
-                            "The certificate is needed to connect to Ripple through HTTPs. Without it, you won't be able to connect. " +
-                            "Please answer 'Yes' to the dialog window asking you to install the certificate in order to switch to Ripple."
-                        );
-                    }
+                try
+                {
+                    store.Add(Cert);
+                }
+                catch (CryptographicException)
+                {
+                    throw new HumanReadableException(
+                        "You must install the certificate.",
+                        "The certificate is needed to connect to Ripple through HTTPs. Without it, you won't be able to connect. " +
+                        "Please answer 'Yes' to the dialog window asking you to install the certificate in order to switch to Ripple."
+                    );
+                }
             }
             finally
             {
