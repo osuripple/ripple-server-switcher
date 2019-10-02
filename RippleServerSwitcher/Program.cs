@@ -17,7 +17,7 @@ namespace RippleServerSwitcher
 
         public static readonly string Version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
         public static readonly int VersionNumber = Convert.ToInt32(Version.Replace(".", string.Empty));
-        private const string sentryDSN = "https://ca538e69c0bc48658e58c7227383a3aa@pew.nyodev.xyz/21";
+        private const string sentryDSN = "https://ee05f6bf42c9433c9dfd2bc97a2ee895@sentry.nyodev.xyz/5";
         public static RavenClient RavenClient = new RavenClient(sentryDSN);
         public static Switcher Switcher = new Switcher();
         
