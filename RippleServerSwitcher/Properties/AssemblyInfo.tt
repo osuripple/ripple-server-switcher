@@ -35,5 +35,5 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("<#= Version #>")]
 [assembly: AssemblyFileVersion("<#= Version #>")]
 <#+
-public string Version = "2.1.0.0";
+public string Version = "2.2.0.0";
 #>

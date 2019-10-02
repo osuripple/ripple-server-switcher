@@ -11,6 +11,14 @@ namespace RippleServerSwitcher
         private static Dictionary<string, string[]> entries = new Dictionary<string, string[]>
         {
             {
+                "v2.2.0.0",
+                new string[]
+                {
+                    "Updated Sentry DSN",
+                    defaultChangelogEntry
+                }
+            },
+            {
                 "v2.1.0.0",
                 new string[]
                 {
