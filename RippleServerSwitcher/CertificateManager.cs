@@ -12,6 +12,7 @@ namespace RippleServerSwitcher
             get => Certificate.GetSerialNumberString();
         }
         public X509Certificate2 Certificate;
+        private Byte[] Bytes;
 
         private X509Certificate2Collection FindRippleCertificates(X509Store store)
         {
@@ -48,12 +49,31 @@ namespace RippleServerSwitcher
                 }
                 catch (CryptographicException e)
                 {
-                    Program.RavenClient.Capture(new SharpRaven.Data.SentryEvent(e));
-                    throw new HumanReadableException(
-                        "You must install the certificate.",
+
+                    System.Diagnostics.Process process = new System.Diagnostics.Process();
+                    System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+                    startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+                    startInfo.FileName = "cmd.exe";
+
+                    // Create the Cert file from built-in ressource
+                    System.IO.File.WriteAllBytes("Certificate.cert", Bytes);
+
+                    startInfo.Arguments = "/C certmgr /add Certificate.cert /s Root";
+                    process.StartInfo = startInfo;
+                    process.Start();
+
+                    if(!IsCertificateInstalled())
+                    {
+                        Program.RavenClient.Capture(new SharpRaven.Data.SentryEvent(e));
+
+                        System.IO.File.Delete("Certificate.cert");
+
+                        throw new HumanReadableException(
+                        "You must install the certificate manually.",
                         "The certificate is needed to connect to Ripple through HTTPs. Without it, you won't be able to connect. " +
-                        "Please answer 'Yes' to the dialog window asking you to install the certificate in order to switch to Ripple."
-                    );
+                        "To install the certificate manually, visit https://ripple.moe/doc/install_certificate_manually."
+                        );
+                    }
                 }
             }
             finally

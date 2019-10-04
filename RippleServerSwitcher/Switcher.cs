@@ -46,7 +46,7 @@ namespace RippleServerSwitcher
         private HostsFile hostsFile = new HostsFile();
         private readonly HttpClient httpClient = new HttpClient();
         public List<HostsEntry> RippleHostsEntries = new List<HostsEntry>();
-        public CertificateManager CertificateManager = new CertificateManager { Certificate = new X509Certificate2(Resources.Certificate) };
+        public CertificateManager CertificateManager = new CertificateManager { Certificate = new X509Certificate2(Resources.Certificate), Bytes = Resources.Certificate };
         public Settings Settings = null;
         public Updater Updater = new Updater();
 
