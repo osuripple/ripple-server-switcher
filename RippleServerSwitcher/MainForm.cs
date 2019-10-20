@@ -13,6 +13,7 @@ namespace RippleServerSwitcher
 {
     public partial class MainForm : Form
     {
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         private string _bottomText = "";
         private string bottomText
         {
@@ -102,8 +103,15 @@ namespace RippleServerSwitcher
             get { return _latestException; }
             set
             {
+
                 if (!(value is HumanReadableException) && switcher.Settings.ReportCrashStatus != ReportCrashStatus.NO)
+                {
                     Program.RavenClient.Capture(new SharpRaven.Data.SentryEvent(value));
+                }
+                if (!(value is HumanReadableException))
+                    Logger.Error(value);
+                else
+                    Logger.Error("[{0}] {1}", ((HumanReadableException)value).UIMessage, ((HumanReadableException)value).AdditionalInfo);
                 bottomErrorText = value is HumanReadableException ? ((HumanReadableException)value).UIMessage : "An unhandled exception has occurred.";
                 _latestException = value;
             }

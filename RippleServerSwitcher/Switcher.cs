@@ -28,6 +28,8 @@ namespace RippleServerSwitcher
 
     class Switcher
     {
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
         public static readonly HostsEntry[] FallbackOfflineIPs = new HostsEntry[]
         {
             new HostsEntry{domain="osu.ppy.sh", ip="51.15.223.146"},
@@ -52,6 +54,7 @@ namespace RippleServerSwitcher
 
         public async Task Initialize()
         {
+            Logger.Info("Initializing the switcher");
             if (Settings == null)
                 Settings = await SettingsManager.Load();
             await UpdateIPs();
@@ -82,10 +85,12 @@ namespace RippleServerSwitcher
 
         public async Task DisconnectFromRipple()
         {
+            Logger.Info("Disconnecting from Ripple");
             await hostsFile.Parse();
             hostsFile.semaphore.Wait();
             try
             {
+                Logger.Info("Removing hosts file entries");
                 hostsFile.Entries.RemoveAll(x => x is HostsEntry && ((HostsEntry)x).domain.Contains(".ppy.sh"));
                 await hostsFile.Write();
             }
@@ -93,19 +98,25 @@ namespace RippleServerSwitcher
             {
                 hostsFile.semaphore.Release();
             }
+            Logger.Info("Hosts file entries removed. Now re-parsing hosts file");
             await hostsFile.Parse();
             if (IsConnectedToRipple())
                 throw new HumanReadableException("Can't delete entries. Disable antivirus.", "The hosts file looks writable, but Ripple Server Switcher wasn't able to delete the entries from it and switch back to osu!. There is most likely a software blocking access to the hosts file. Please disable your antivirus, third party firewall or any similar software that may block edits on the hosts file.");
+            Logger.Info("Successfully disconected from Ripple");
         }
         
         public async Task ConnectToRipple()
         {
+            Logger.Info("Connecting to Ripple");
             CertificateManager.InstallCertificate();
             try
             {
                 await UpdateIPs();
             }
-            catch (UpdateIPsFailedException) { }
+            catch (UpdateIPsFailedException e)
+            {
+                Logger.Warn(e, "Could not update remote IPs, failing silently");
+            }
 
             await hostsFile.Parse();
             hostsFile.semaphore.Wait();
@@ -120,12 +131,15 @@ namespace RippleServerSwitcher
                 hostsFile.semaphore.Release();
             }
             await hostsFile.Parse();
+            Logger.Info("Hosts file entries added. Now re-parsing hosts file");
             if (!IsConnectedToRipple())
                 throw new HumanReadableException("Can't write entries. Disable antivirus.", "The hosts file looks writable, but Ripple Server Switcher wasn't able to write the required entries to it and switch to ripple. There is most likely a software blocking access to the hosts file. Please disable your antivirus, third party firewall or any similar software that may block edits on the hosts file.");
+            Logger.Info("Successfully connected to Ripple");
         }
 
         public async Task UpdateIPs()
         {
+            Logger.Info("Updating remote IPs");
             bool fromInternet = false;
             Dictionary<string, string> redirections = new Dictionary<string, string>();
             try
@@ -141,12 +155,15 @@ namespace RippleServerSwitcher
                     RippleHostsEntries.Add(new HostsEntry { domain = pair.Key, ip = pair.Value });
 
                 fromInternet = true;
+                Logger.Info("Remote IPs updated");
             }
             catch (Exception ex)
             {
+                Logger.Error(ex, "Error while updating remote IPs");
                 RippleHostsEntries = Settings.IPsBackup.Count > 0 ? Settings.IPsBackup : FallbackOfflineIPs.ToList();
                 if (!(ex is JsonReaderException))
                 {
+                    Logger.Warn("Couldn't fetch remote IPs. Using fallback ones.");
                     // Fail silently if we have a JsonReaderException (probably cloudflare)
                     throw new UpdateIPsFailedException(String.Format("Couldn't fetch IPs ({0}). Using fallback ones.", ex.Message));
                 }

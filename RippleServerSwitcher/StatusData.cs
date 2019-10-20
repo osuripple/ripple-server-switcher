@@ -9,6 +9,7 @@ namespace RippleServerSwitcher
 {
     public class Pipoli
     {
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         private static readonly HttpClient httpClient = new HttpClient();
         private const string apiBase = "https://status.ripple.moe/backend";
         private static string endpoint = $"{apiBase}/status_data.php";
@@ -16,6 +17,7 @@ namespace RippleServerSwitcher
 
         public static async Task<Dictionary<string, ServiceStatus>> FetchServicesStatus()
         {
+            Logger.Info("Fetching services status");
             using (var result = await httpClient.GetAsync(endpoint))
             {
                 string content = await result.Content.ReadAsStringAsync();
@@ -24,6 +26,7 @@ namespace RippleServerSwitcher
         }
         public static async Task<EmergencyMessage> FetchEmergencyMessage()
         {
+            Logger.Info("Fetching emergency message");
             using (var result = await httpClient.GetAsync(emergencyMessageEndpoint))
             {
                 string content = await result.Content.ReadAsStringAsync();

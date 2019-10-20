@@ -12,11 +12,13 @@ namespace RippleServerSwitcher
 
     class SettingsManager
     {
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         public static string Folder { get { return Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Ripple Server Switcher"; } }
         public static string FilePath { get { return Folder + "\\config"; } }
         
         public static Settings CreateEmpty()
         {
+            Logger.Info("Creating empty settings file");
             Settings s = new Settings();
             File.WriteAllText(FilePath, JsonConvert.SerializeObject(s));
             return s;
@@ -24,6 +26,7 @@ namespace RippleServerSwitcher
 
         public async static Task<Settings> Load()
         {
+            Logger.Info("Loading settings");
             Directory.CreateDirectory(Folder);
             if (!File.Exists(FilePath))
                 return CreateEmpty();

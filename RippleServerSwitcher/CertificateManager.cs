@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 
@@ -9,6 +10,7 @@ namespace RippleServerSwitcher
 
     class CertificateManager
     {
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         public string AuthoritySerialNumber
         {
             get => Certificate.GetSerialNumberString();
@@ -41,6 +43,7 @@ namespace RippleServerSwitcher
 
         private void InstallCertificateStore()
         {
+            Logger.Info("Trying to install certificate using X509 API");
             X509Store store = new X509Store(StoreName.Root, StoreLocation.CurrentUser);
             try
             {
@@ -57,6 +60,7 @@ namespace RippleServerSwitcher
 
         private void InstallCertificateCertutil(bool user = true)
         {
+            Logger.Info("Trying to install certificate using certutil (user {0})", user);
             // Create the Cert file from built-in resource
             var tempCertPath = System.IO.Path.GetTempPath() + Guid.NewGuid().ToString() + ".cert";
             try
@@ -74,18 +78,24 @@ namespace RippleServerSwitcher
             try
             {
                 // Install through certutil
-                var output = "";
                 System.Diagnostics.Process process = new System.Diagnostics.Process();
                 process.StartInfo = new System.Diagnostics.ProcessStartInfo
                 {
-                    WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden,
+                    //WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden,
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+                    CreateNoWindow = true,
                     FileName = "certutil",
-                    Arguments = $"{(user ? "-user " : " ")}-f -AddStore \"Root\" {tempCertPath}"
+                    Arguments = $"{(user ? "-user " : "")}-f -AddStore \"Root\" {tempCertPath}"
                 };
-                process.OutputDataReceived += (sender, args) => output += args.Data;
+                // process.OutputDataReceived += (sender, args) => output += args.Data;
                 // startInfo.Arguments = "-enterprise -f -v -AddStore \"Root\" Certificate.cert";
                 process.Start();
                 process.WaitForExit();
+                string output = process.StandardOutput.ReadToEnd();
+                string err = process.StandardError.ReadToEnd();
+                Logger.Info("{0} {1} exited with code {2}.\n----- STDOUT -----\n{3}\n----- STDERR -----\n{4}", process.StartInfo.FileName, process.StartInfo.Arguments, process.ExitCode, output, err);
                 if (process.ExitCode != 0 || !IsCertificateInstalled())
                 {
                     // throw new HumanReadableException("certutil error", $"Certificate install error.\nExited with code {process.ExitCode}, output:\n\n{output}");
@@ -110,22 +120,26 @@ namespace RippleServerSwitcher
 
         public void InstallCertificate()
         {
-            Action[] functions = {
+            List<Action> functions = new List<Action> {
                 () => InstallCertificateStore(),
                 () => InstallCertificateCertutil(true),
                 () => InstallCertificateCertutil(false)
             };
             var success = false;
-            foreach (var f in functions)
+            foreach (var f in functions.Select((Value, Index) => new { Value, Index }))
             {
+                Logger.Info("Installing certificate (method {0}/{1})", f.Index + 1, functions.Count);
                 try
                 {
-                    f();
+                    f.Value();
                     success = true;
+                    Logger.Info("Certificate installed successfully with method {0}", f.Index + 1);
                     break;
                 }
-                catch
-                { }
+                catch (Exception e)
+                {
+                    Logger.Error(e, "Certificate installation failed (method {0}/{1})", f.Index + 1, functions.Count);
+                }
             }
             if (!success)
             {
@@ -142,6 +156,7 @@ namespace RippleServerSwitcher
 
         private void RemoveCertificateStore()
         {
+            Logger.Info("Trying to remove the cerficicate using X509 API");
             X509Store store = new X509Store(StoreName.Root, StoreLocation.CurrentUser);
             try
             {
@@ -175,17 +190,24 @@ namespace RippleServerSwitcher
 
         private void RemoveCertificateCertutil(bool user = false)
         {
-            var output = "";
+            Logger.Info("Trying to remove the cerficicate using certutil (user: {0})", user);
             System.Diagnostics.Process process = new System.Diagnostics.Process();
             process.StartInfo = new System.Diagnostics.ProcessStartInfo
             {
-                WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden,
+                // WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden,
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                CreateNoWindow = true,
                 FileName = "certutil",
-                Arguments = $"{(user ? "-user " : " ")}-delstore \"Root\" {Certificate.GetSerialNumberString()}"
+                Arguments = $"{(user ? "-user " : "")}-delstore \"Root\" {Certificate.GetSerialNumberString()}"
             };
-            process.OutputDataReceived += (sender, args) => output += args.Data;
+            // process.OutputDataReceived += (sender, args) => output += args.Data;
             process.Start();
             process.WaitForExit();
+            string output = process.StandardOutput.ReadToEnd();
+            string err = process.StandardError.ReadToEnd();
+            Logger.Info("{0} {1} exited with code {2}.\n----- STDOUT -----\n{3}\n----- STDERR -----\n{4}", process.StartInfo.FileName, process.StartInfo.Arguments, process.ExitCode, output, err);
             if (process.ExitCode != 0 || IsCertificateInstalled())
             {
                 throw new HumanReadableException("certutil error", $"Certificate uninstall error.\nExited with code {process.ExitCode}, output:\n\n{output}");
@@ -194,22 +216,26 @@ namespace RippleServerSwitcher
 
         public void RemoveCertificates()
         {
-            Action[] functions = {
+            List<Action> functions = new List<Action>{
                 () => RemoveCertificateStore(),
                 () => RemoveCertificateCertutil(true),
                 () => RemoveCertificateCertutil(false)
             };
             var success = false;
-            foreach (var f in functions)
+            foreach (var f in functions.Select((Value, Index) => new { Value, Index }))
             {
+                Logger.Info("Removing certificate (method {0}/{1})", f.Index + 1, functions.Count);
                 try
                 {
-                    f();
+                    f.Value();
                     success = true;
+                    Logger.Info("Certificate removed successfully with method {0}", f.Index + 1);
                     break;
                 }
-                catch
-                { }
+                catch (Exception e)
+                {
+                    Logger.Error(e, "Certificate removal failed (method {0}/{1})", f.Index + 1, functions.Count);
+                }
             }
             if (!success)
             {

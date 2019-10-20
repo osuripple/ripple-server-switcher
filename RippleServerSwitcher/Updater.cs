@@ -12,6 +12,7 @@ namespace RippleServerSwitcher
 {
     public class Updater
     {
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         public string Endpoint = "https://ip.ripple.moe/updater_v2.json";
         private readonly HttpClient httpClient = new HttpClient();
         private UpdateInfo info;
@@ -32,6 +33,7 @@ namespace RippleServerSwitcher
 
         public async Task CheckUpdates()
         {
+            Logger.Info("Checking for updates");
             using (var result = await httpClient.GetAsync(Endpoint))
             {
                 string content = await result.Content.ReadAsStringAsync();
@@ -41,6 +43,7 @@ namespace RippleServerSwitcher
 
         public async Task<string> DownloadLatestVersion(DownloadProgressChangedEventHandler progressHandler)
         {
+            Logger.Info("Downloading new rss version");
             if (info == null)
                 await CheckUpdates();
             string destination = Path.GetTempPath() + Guid.NewGuid().ToString();
