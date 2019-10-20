@@ -47,8 +47,6 @@ namespace RippleServerSwitcher
                 store.Open(OpenFlags.ReadWrite);
                 if (FindRippleCertificates(store).Count > 0)
                     return;
-
-                throw new CryptographicException();
                 store.Add(Certificate);
             }
             finally
