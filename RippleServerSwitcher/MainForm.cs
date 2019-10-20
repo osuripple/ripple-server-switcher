@@ -296,6 +296,11 @@ namespace RippleServerSwitcher
                 bottomText = "";
                 updateStatus();
             }
+            catch (HumanReadableException ex)
+            {
+                latestException = ex;
+                MessageBox.Show(ex.AdditionalInfo, ex.UIMessage, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             catch (Exception ex)
             {
                 latestException = ex;

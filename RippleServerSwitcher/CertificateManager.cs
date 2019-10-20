@@ -5,6 +5,8 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace RippleServerSwitcher
 {
+    class CertificateInstallationFailedException : Exception { }
+
     class CertificateManager
     {
         public string AuthoritySerialNumber
@@ -12,7 +14,10 @@ namespace RippleServerSwitcher
             get => Certificate.GetSerialNumberString();
         }
         public X509Certificate2 Certificate;
-        private Byte[] Bytes;
+        private byte[] CertificateBytes
+        {
+            get => Certificate.RawData;
+        }
 
         private X509Certificate2Collection FindRippleCertificates(X509Store store)
         {
@@ -34,7 +39,7 @@ namespace RippleServerSwitcher
             }
         }
 
-        public void InstallCertificate()
+        private void InstallCertificateStore()
         {
             X509Store store = new X509Store(StoreName.Root, StoreLocation.CurrentUser);
             try
@@ -43,38 +48,8 @@ namespace RippleServerSwitcher
                 if (FindRippleCertificates(store).Count > 0)
                     return;
 
-                try
-                {
-                    store.Add(Certificate);
-                }
-                catch (CryptographicException e)
-                {
-
-                    System.Diagnostics.Process process = new System.Diagnostics.Process();
-                    System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
-                    startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
-                    startInfo.FileName = "cmd.exe";
-
-                    // Create the Cert file from built-in ressource
-                    System.IO.File.WriteAllBytes("Certificate.cert", Bytes);
-
-                    startInfo.Arguments = "/C certmgr /add Certificate.cert /s Root";
-                    process.StartInfo = startInfo;
-                    process.Start();
-
-                    if(!IsCertificateInstalled())
-                    {
-                        Program.RavenClient.Capture(new SharpRaven.Data.SentryEvent(e));
-
-                        System.IO.File.Delete("Certificate.cert");
-
-                        throw new HumanReadableException(
-                        "You must install the certificate manually.",
-                        "The certificate is needed to connect to Ripple through HTTPs. Without it, you won't be able to connect. " +
-                        "To install the certificate manually, visit https://ripple.moe/doc/install_certificate_manually."
-                        );
-                    }
-                }
+                throw new CryptographicException();
+                store.Add(Certificate);
             }
             finally
             {
@@ -82,7 +57,92 @@ namespace RippleServerSwitcher
             }
         }
 
-        public void RemoveCertificates()
+        private void InstallCertificateCertutil(bool user = true)
+        {
+            // Create the Cert file from built-in resource
+            var tempCertPath = System.IO.Path.GetTempPath() + Guid.NewGuid().ToString() + ".cert";
+            try
+            {
+                System.IO.File.WriteAllBytes(tempCertPath, CertificateBytes);
+            }
+            catch (System.IO.IOException)
+            {
+                throw new HumanReadableException(
+                    "Cannot create temp cert",
+                    "There was an error while creating the temporary certificate file. Make sure you have the required privileges. You can also try turning off any antivirus software you may have installed."
+                );
+            }
+
+            try
+            {
+                // Install through certutil
+                var output = "";
+                System.Diagnostics.Process process = new System.Diagnostics.Process();
+                process.StartInfo = new System.Diagnostics.ProcessStartInfo
+                {
+                    WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden,
+                    FileName = "certutil",
+                    Arguments = $"{(user ? "-user " : " ")}-f -AddStore \"Root\" {tempCertPath}"
+                };
+                process.OutputDataReceived += (sender, args) => output += args.Data;
+                // startInfo.Arguments = "-enterprise -f -v -AddStore \"Root\" Certificate.cert";
+                process.Start();
+                process.WaitForExit();
+                if (process.ExitCode != 0 || !IsCertificateInstalled())
+                {
+                    // throw new HumanReadableException("certutil error", $"Certificate install error.\nExited with code {process.ExitCode}, output:\n\n{output}");
+                    throw new CertificateInstallationFailedException();
+                }
+            }
+            finally
+            {
+                System.IO.File.Delete(tempCertPath);
+            }
+
+            /*if (!IsCertificateInstalled())
+            {
+                var info = "Certificate installation failed." +
+                    "The certificate is needed to connect to Ripple through HTTPs. " +
+                    "Without it, you won't be able to connect. " +
+                    "Try installing the certificate manually. " +
+                    "Instructions for that are available on https://ripple.moe/doc/install_certificate_manually";
+                throw new HumanReadableException("Certificate installation failed", info);
+            }*/
+        }
+
+        public void InstallCertificate()
+        {
+            Action[] functions = {
+                () => InstallCertificateStore(),
+                () => InstallCertificateCertutil(true),
+                () => InstallCertificateCertutil(false)
+            };
+            var success = false;
+            foreach (var f in functions)
+            {
+                try
+                {
+                    f();
+                    success = true;
+                    break;
+                }
+                catch
+                { }
+            }
+            if (!success)
+            {
+                throw new HumanReadableException(
+                    "Certificate installation failed",
+                    "Certificate installation failed." +
+                    "The certificate is needed to connect to Ripple through HTTPs. " +
+                    "Without it, you won't be able to connect. " +
+                    "Try installing the certificate manually. " +
+                    "Instructions for that are available on https://ripple.moe/doc/install_certificate_manually"
+                );
+            }
+        }
+
+        private void RemoveCertificateStore()
         {
             X509Store store = new X509Store(StoreName.Root, StoreLocation.CurrentUser);
             try
@@ -90,11 +150,11 @@ namespace RippleServerSwitcher
                 store.Open(OpenFlags.ReadWrite);
                 foreach (X509Certificate2 c in FindRippleCertificates(store))
                 {
-                    try
-                    {
+                    /*try
+                    {*/
                         store.Remove(c);
-                    }
-                    catch (CryptographicException)
+                    //}
+                    /*catch (CryptographicException)
                     {
                         string serialNumber;
                         try
@@ -106,12 +166,56 @@ namespace RippleServerSwitcher
                             serialNumber = "unknown";
                         }
                         throw new HumanReadableException("Cannot remove.", $"The certificate with serial number '{serialNumber}' was not uninstalled because the user denied its removal or the access was denied (non-locally installed cert).");
-                    }
+                    }*/
                 }
             }
             finally
             {
                 store.Close();
+            }
+        }
+
+        private void RemoveCertificateCertutil(bool user = false)
+        {
+            var output = "";
+            System.Diagnostics.Process process = new System.Diagnostics.Process();
+            process.StartInfo = new System.Diagnostics.ProcessStartInfo
+            {
+                WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden,
+                FileName = "certutil",
+                Arguments = $"{(user ? "-user " : " ")}-delstore \"Root\" {Certificate.GetSerialNumberString()}"
+            };
+            process.OutputDataReceived += (sender, args) => output += args.Data;
+            process.Start();
+            process.WaitForExit();
+            if (process.ExitCode != 0 || IsCertificateInstalled())
+            {
+                throw new HumanReadableException("certutil error", $"Certificate uninstall error.\nExited with code {process.ExitCode}, output:\n\n{output}");
+            }
+        }
+
+        public void RemoveCertificates()
+        {
+            Action[] functions = {
+                () => RemoveCertificateStore(),
+                () => RemoveCertificateCertutil(true),
+                () => RemoveCertificateCertutil(false)
+            };
+            var success = false;
+            foreach (var f in functions)
+            {
+                try
+                {
+                    f();
+                    success = true;
+                    break;
+                }
+                catch
+                { }
+            }
+            if (!success)
+            {
+                throw new HumanReadableException("Certificate removal failed", "Could not remove the certificate.");
             }
         }
     }
