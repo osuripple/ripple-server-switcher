@@ -1,4 +1,4 @@
-![](http://oi66.tinypic.com/nv7j2x.jpg)
+![](https://i.ibb.co/BTyRq79/rssimg.png)
 
 ## Ripple Server Switcher 2
 New ripple server switcher. Still written in C#.
