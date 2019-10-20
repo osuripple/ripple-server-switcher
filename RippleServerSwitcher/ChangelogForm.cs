@@ -11,6 +11,17 @@ namespace RippleServerSwitcher
         private static Dictionary<string, string[]> entries = new Dictionary<string, string[]>
         {
             {
+                "v2.3.0.0",
+                new string[]
+                {
+                    "Fail-safe certificate installation with certutil",
+                    "Fail-safe certificate installation in machine store",
+                    "Add logging",
+                    "Update hardcoded fallback IPs",
+                    defaultChangelogEntry
+                }
+            },
+            {
                 "v2.2.0.0",
                 new string[]
                 {
